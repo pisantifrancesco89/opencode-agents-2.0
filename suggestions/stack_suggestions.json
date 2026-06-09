@@ -1,0 +1,182 @@
+{
+  "stacks": {
+    "Web Application (SaaS)": {
+      "default": {
+        "frontend": "Next.js 14 + TypeScript",
+        "backend": "Next.js API Routes + tRPC",
+        "database": "PostgreSQL + Prisma",
+        "deploy": "Vercel + Railway",
+        "auth": "NextAuth.js",
+        "payments": "Stripe",
+        "estimated_cost": "$50-100/mese",
+        "estimated_time": "4-6 settimane"
+      },
+      "alternatives": [
+        {
+          "name": "Vue Stack",
+          "frontend": "Nuxt 3 + TypeScript",
+          "backend": "Nuxt API Routes",
+          "database": "PostgreSQL + Drizzle",
+          "deploy": "Vercel + Railway"
+        },
+        {
+          "name": "React + Express",
+          "frontend": "React + Vite + TypeScript",
+          "backend": "Express + TypeScript",
+          "database": "PostgreSQL + Prisma",
+          "deploy": "Railway"
+        }
+      ]
+    },
+    "E-commerce": {
+      "default": {
+        "frontend": "Next.js 14 + TypeScript",
+        "backend": "Next.js API Routes",
+        "database": "PostgreSQL + Prisma",
+        "deploy": "Vercel + Railway",
+        "auth": "NextAuth.js",
+        "payments": "Stripe",
+        "email": "Resend",
+        "storage": "Uploadthing",
+        "estimated_cost": "$100-200/mese",
+        "estimated_time": "6-8 settimane"
+      }
+    },
+    "Mobile App": {
+      "default": {
+        "frontend": "React Native + Expo",
+        "backend": "Node.js + Express",
+        "database": "PostgreSQL + Prisma",
+        "deploy": "Railway + Expo",
+        "auth": "Expo Auth + NextAuth",
+        "payments": "RevenueCat",
+        "estimated_cost": "$50-150/mese",
+        "estimated_time": "8-12 settimane"
+      }
+    },
+    "API Backend": {
+      "default": {
+        "frontend": "N/A",
+        "backend": "FastAPI + Python",
+        "database": "PostgreSQL + SQLAlchemy",
+        "deploy": "Railway",
+        "auth": "JWT + OAuth2",
+        "docs": "Swagger + ReDoc",
+        "estimated_cost": "$30-80/mese",
+        "estimated_time": "3-5 settimane"
+      }
+    },
+    "AI/ML Application": {
+      "default": {
+        "frontend": "Next.js + TypeScript",
+        "backend": "FastAPI + Python",
+        "database": "PostgreSQL + pgvector",
+        "deploy": "Railway + Modal",
+        "auth": "NextAuth.js",
+        "ai": "OpenAI API + LangChain",
+        "estimated_cost": "$200-500/mese",
+        "estimated_time": "6-10 settimane"
+      }
+    },
+    "Marketplace": {
+      "default": {
+        "frontend": "Next.js 14 + TypeScript",
+        "backend": "Next.js API Routes",
+        "database": "PostgreSQL + Prisma",
+        "deploy": "Vercel + Railway",
+        "auth": "NextAuth.js",
+        "payments": "Stripe Connect",
+        "chat": "Socket.io",
+        "estimated_cost": "$150-300/mese",
+        "estimated_time": "10-14 settimane"
+      }
+    },
+    "Social Network": {
+      "default": {
+        "frontend": "Next.js 14 + TypeScript",
+        "backend": "Next.js API Routes + Socket.io",
+        "database": "PostgreSQL + Prisma + Redis",
+        "deploy": "Vercel + Railway",
+        "auth": "NextAuth.js",
+        "realtime": "Socket.io",
+        "storage": "Cloudinary",
+        "estimated_cost": "$100-250/mese",
+        "estimated_time": "8-12 settimane"
+      }
+    },
+    "Dashboard/Analytics": {
+      "default": {
+        "frontend": "Next.js + Recharts/D3",
+        "backend": "Next.js API Routes",
+        "database": "PostgreSQL + Prisma",
+        "deploy": "Vercel + Railway",
+        "auth": "NextAuth.js",
+        "charts": "Recharts + Tremor",
+        "estimated_cost": "$50-150/mese",
+        "estimated_time": "4-8 settimane"
+      }
+    }
+  },
+  "agents": {
+    "base": ["frontend", "backend", "database", "qa-engineer", "devops"],
+    "specialized": {
+      "mobile": ["mobile"],
+      "ai": ["ai-engineer"],
+      "payments": ["payments"],
+      "realtime": ["websocket"],
+      "security": ["security"],
+      "blockchain": ["web3"]
+    }
+  },
+  "costs": {
+    "free_tier": {
+      "frontend": "Vercel (free)",
+      "backend": "Railway ($5 trial credit)",
+      "database": "Supabase (free tier)",
+      "total": "$0-20/mese"
+    },
+    "startup": {
+      "frontend": "Vercel Pro ($20)",
+      "backend": "Railway ($20-50)",
+      "database": "Railway Postgres ($10-20)",
+      "total": "$50-100/mese"
+    },
+    "business": {
+      "frontend": "Vercel Pro ($20)",
+      "backend": "Railway ($50-100)",
+      "database": "Railway Postgres ($20-50)",
+      "cache": "Redis ($10-20)",
+      "total": "$100-300/mese"
+    },
+    "enterprise": {
+      "frontend": "Vercel Enterprise ($150+)",
+      "backend": "AWS/GCP ($200+)",
+      "database": "Managed Postgres ($100+)",
+      "cache": "Redis Cluster ($50+)",
+      "cdn": "Cloudflare ($50+)",
+      "total": "$500+/mese"
+    }
+  },
+  "timelines": {
+    "minimal_mvp": {
+      "features": 3-5,
+      "duration": "2-4 settimane",
+      "team": "1 developer"
+    },
+    "standard_mvp": {
+      "features": 5-10,
+      "duration": "1-2 mesi",
+      "team": "1-2 developers"
+    },
+    "complete_product": {
+      "features": 10-20,
+      "duration": "3-6 mesi",
+      "team": "2-4 developers"
+    },
+    "enterprise": {
+      "features": 20+,
+      "duration": "6-12 mesi",
+      "team": "4+ developers"
+    }
+  }
+}
