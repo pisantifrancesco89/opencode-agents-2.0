@@ -14,96 +14,52 @@ Crea team di agenti AI specializzati per il tuo progetto in meno di 5 minuti. Il
 
 ## 🚀 Quick Start
 
-### 1. Installa
+### Come Funziona
 
-```bash
-# Clona il repo
-git clone https://github.com/tuo-username/opencode-agents-2.0.git
-cd opencode-agents-2.0
+Non c'è nulla da installare! Il sistema funziona direttamente nella chat con l'AI.
 
-# Setup
-./setup.sh
+**1. Dimmi cosa vuoi creare**
+
+Esempio:
+```
+"Voglio creare un SaaS per gestione clienti"
+"Voglio un e-commerce per prodotti artigianali"
+"Voglio un'app per tracciare abitudini"
 ```
 
-### 2. Esegui il Wizard
+**2. Io ti guido passo passo**
 
-```bash
-python3 wizard/wizard.py
-```
-
-### 3. Rispondi alle Domande
-
-Il wizard ti guiderà attraverso:
-- Tipo di progetto (SaaS, E-commerce, Mobile, etc.)
-- Feature essenziali
-- Preferenze tecnologiche
+Ti farò domande semplici (una alla volta):
+- Tipo di progetto
+- Nome e descrizione
+- Target utenti
+- Feature principali (ti suggerisco io quelle migliori)
+- Preferenze tecniche
 - Budget e timeline
 
-### 4. Ottieni il Progetto Completo
+**3. Genero tutto automaticamente**
 
-Il wizard genera automaticamente:
-```
-tuo-progetto/
-├── .opencode/
-│   ├── orchestrator.md       # Regole orchestrazione
-│   └── agents/               # Agenti specializzati
-│       ├── frontend.md
-│       ├── backend.md
-│       ├── database.md
-│       ├── qa-engineer.md
-│       └── devops.md
-├── CLAUDE.md                 # Contesto progetto
-├── PLAN.md                   # Piano sviluppo
-├── .env.example              # Variabili ambiente
-└── README.md                 # Documentazione
-```
+Dopo le domande, creo automaticamente:
+- `.opencode/orchestrator.md` - Regole orchestrazione
+- `.opencode/agents/*.md` - Agenti specializzati per il tuo progetto
+- `CLAUDE.md` - Contesto progetto
+- `PLAN.md` - Piano di sviluppo dettagliato
+- `.env.example` - Variabili ambiente
+- `README.md` - Documentazione
 
-### 5. Inizia a Sviluppare
+**4. Inizi subito a sviluppare**
 
-```bash
-cd tuo-progetto
-
-# Esempio: Implementa feature
-"Voglio implementare il sistema di autenticazione con login social"
-```
-
-L'orchestratore chiamerà automaticamente gli agenti necessari!
+Mi dici "Iniziamo con la Fase 1" e io chiamo gli agenti necessari in parallelo!
 
 ## 🎯 Esempio Completo
 
-```bash
-$ python3 wizard/wizard.py
+**Tu:** "Voglio creare un SaaS per gestione clienti freelance"
 
-🚀 OpenCode Setup Wizard 2.0
+**AI:** Ti fa 7 domande semplici (una alla volta)
 
-? Che tipo di progetto vuoi creare?
-❯ Web Application (SaaS)
+**Dopo le risposte, l'AI genera:**
 
-? Qual è il nome del progetto?
-> HabitTracker Pro
-
-? Descrivi brevemente il tuo progetto:
-> App per tracciare abitudini quotidiane con AI
-
-? Chi sono i tuoi utenti target?
-> Persone che vogliono migliorare le proprie abitudini
-
-? Quali feature sono essenziali per la MVP?
-✅ Autenticazione utenti
-✅ Dashboard con statistiche
-✅ Tracker abitudini
-✅ Notifiche push
-✅ AI recommendations
-
-? Hai preferenze tecnologiche?
-❯ Suggerisci tu lo stack ottimale
-
-? Qual è il tuo budget mensile?
-❯ $50-100
-
-? Quando vorresti lanciare la MVP?
-❯ 1-2 mesi
-
+```
 ✨ Analisi completata!
 
 📊 Raccomandazioni:
@@ -118,22 +74,14 @@ $ python3 wizard/wizard.py
    - @database (PostgreSQL + Prisma)
    - @qa-engineer (Vitest + Playwright)
    - @devops (Vercel + Railway)
-   - @ai-engineer (Recommendations)
 
 📁 File creati:
    ✅ .opencode/orchestrator.md
-   ✅ .opencode/agents/frontend.md
-   ✅ .opencode/agents/backend.md
-   ✅ .opencode/agents/database.md
-   ✅ .opencode/agents/qa-engineer.md
-   ✅ .opencode/agents/devops.md
-   ✅ .opencode/agents/ai-engineer.md
+   ✅ .opencode/agents/*.md (5 agenti)
    ✅ CLAUDE.md
    ✅ PLAN.md
    ✅ .env.example
    ✅ README.md
-
-🎯 Pronto per iniziare!
 ```
 
 ## 📊 Stack Supportati
@@ -176,28 +124,28 @@ $ python3 wizard/wizard.py
 ## 🎨 Come Funziona
 
 ### 1. Discovery Phase
-Il wizard raccoglie informazioni sul tuo progetto:
+Tu mi dici cosa vuoi creare e io ti faccio domande intelligenti:
 - Tipo di applicazione
 - Feature essenziali
 - Target utenti
 - Vincoli tecnici e budget
 
 ### 2. Analysis Phase
-Analizza le risposte e suggerisce:
+Analizzo le tue risposte e suggerisco:
 - Stack tecnologico ottimale
 - Architettura consigliata
 - Agenti necessari
 - Stima costi e tempi
 
 ### 3. Generation Phase
-Genera automaticamente:
+Genero automaticamente:
 - Orchestratore personalizzato
 - Agenti specializzati
 - Piano di sviluppo dettagliato
 - Documentazione completa
 
 ### 4. Kickoff Phase
-Ti aiuta a iniziare:
+Ti aiuto a iniziare:
 - Setup progetto
 - Primo task con AI
 - Best practices
@@ -251,19 +199,12 @@ Il wizard genera un piano dettagliato con:
 ## 💡 Esempi di Utilizzo
 
 ### Esempio 1: SaaS App
-```bash
-$ python3 wizard/wizard.py
-? Tipo progetto: Web Application (SaaS)
-? Nome: TaskMaster Pro
-? Feature: Auth, Dashboard, Task management, Team collaboration
-? Stack: Suggerisci tu
-? Budget: $50-100
+**Tu:** "Voglio creare un SaaS per gestione progetti con team collaboration"
 
-# Genera:
-# - Next.js + TypeScript + PostgreSQL
-# - 5 agenti specializzati
-# - Piano 6 settimane
-```
+**AI genera:**
+- Next.js + TypeScript + PostgreSQL
+- 5 agenti specializzati
+- Piano 6 settimane
 
 ### Esempio 2: E-commerce
 ```bash
