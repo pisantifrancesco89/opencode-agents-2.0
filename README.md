@@ -1,404 +1,203 @@
-# OpenCode Agents 2.0 🚀
+# OpenCode Agents 3.0 - AI Software House
 
-**Sistema AI-powered per sviluppo software parallelo con wizard interattivo**
+**AI-powered software house team with permanent memory and 20+ specialized agents.**
 
-Crea team di agenti AI specializzati per il tuo progetto in meno di 5 minuti. Il wizard analizza le tue esigenze e genera automaticamente orchestratore, agenti personalizzati e piano di sviluppo completo.
+Create a team of specialized AI agents for any project (new or existing) in minutes. The orchestrator analyzes your project, asks intelligent questions, generates a development plan, builds a specialized team, and executes tasks in parallel.
 
-## ✨ Novità 2.0
+## What's New in 3.0
 
-- 🎯 **Wizard Interattivo** - Rispondi a domande intelligenti, ottieni setup completo
-- 🤖 **AI Suggestions** - Suggerimenti stack basati sul tuo progetto
-- 📋 **Auto Plan Generator** - Piano di sviluppo dettagliato automatico
-- 🔧 **Dynamic Templates** - Agenti generati su misura per il tuo stack
-- ⚡ **Quick Start** - Da zero a codice in 5 minuti
+- **Permanent Memory System** - Remembers project context across sessions (93% token savings)
+- **20 Specialized Agents** - From frontend to security, AI to payments
+- **Existing Project Support** - Works on new AND existing codebases
+- **Intelligent Orchestration** - CEO that manages the entire lifecycle
+- **Parallel Execution** - Multiple agents work simultaneously
 
-## 🚀 Quick Start
+## Quick Start
 
-### Come Funziona
+### No Installation Required
 
-Non c'è nulla da installare! Il sistema funziona direttamente nella chat con l'AI.
-
-**1. Dimmi cosa vuoi creare**
-
-Esempio:
-```
-"Voglio creare un SaaS per gestione clienti"
-"Voglio un e-commerce per prodotti artigianali"
-"Voglio un'app per tracciare abitudini"
-```
-
-**2. Io ti guido passo passo**
-
-Ti farò domande semplici (una alla volta):
-- Tipo di progetto
-- Nome e descrizione
-- Target utenti
-- Feature principali (ti suggerisco io quelle migliori)
-- Preferenze tecniche
-- Budget e timeline
-
-**3. Genero tutto automaticamente**
-
-Dopo le domande, creo automaticamente:
-- `.opencode/orchestrator.md` - Regole orchestrazione
-- `.opencode/agents/*.md` - Agenti specializzati per il tuo progetto
-- `CLAUDE.md` - Contesto progetto
-- `PLAN.md` - Piano di sviluppo dettagliato
-- `.env.example` - Variabili ambiente
-- `README.md` - Documentazione
-
-**4. Inizi subito a sviluppare**
-
-Mi dici "Iniziamo con la Fase 1" e io chiamo gli agenti necessari in parallelo!
-
-## 🎯 Esempio Completo
-
-**Tu:** "Voglio creare un SaaS per gestione clienti freelance"
-
-**AI:** Ti fa 7 domande semplici (una alla volta)
-
-**Dopo le risposte, l'AI genera:**
+Just talk to the AI:
 
 ```
-✨ Analisi completata!
-
-📊 Raccomandazioni:
-   Stack: Next.js 14 + TypeScript + PostgreSQL + Prisma
-   Deploy: Vercel + Railway
-   Costo stimato: $70/mese
-   Tempo MVP: 6 settimane
-
-🤖 Agenti generati:
-   - @frontend (Next.js specialist)
-   - @backend (API + tRPC)
-   - @database (PostgreSQL + Prisma)
-   - @qa-engineer (Vitest + Playwright)
-   - @devops (Vercel + Railway)
-
-📁 File creati:
-   ✅ .opencode/orchestrator.md
-   ✅ .opencode/agents/*.md (5 agenti)
-   ✅ CLAUDE.md
-   ✅ PLAN.md
-   ✅ .env.example
-   ✅ README.md
+You: "I want to create a SaaS for gym workouts"
+AI: [Loads orchestrator] -> Analyzes -> Plans -> Builds team -> Executes
 ```
 
-## 📊 Stack Supportati
+### For Existing Projects
+
+```
+You: "Help me add payment feature to my project"
+AI: [Loads memory] -> Understands context -> Plans -> Executes
+```
+
+### Continue Previous Work
+
+```
+You: "Continue with the next phase"
+AI: [Loads progress] -> Resumes work -> Updates memory
+```
+
+## How It Works
+
+### 1. Memory System
+
+The orchestrator maintains permanent memory in `.opencode/memory/`:
+
+- `project.md` - Stack, structure, conventions
+- `errors.md` - Mistakes to avoid
+- `successes.md` - What works well
+- `progress.md` - Current status
+- `decisions.md` - Architecture decisions
+
+**Benefit**: 93% fewer tokens per session, no re-analysis needed.
+
+### 2. Agent Team (5-20 agents)
+
+#### Core Team (always present)
+- **planner** - Analysis and planning
+- **builder** - Code execution
+- **reviewer** - QA and code review
+- **documenter** - Documentation
+
+#### Specialized Teams (created as needed)
+
+| Team | Agents |
+|------|--------|
+| Frontend | ui-specialist, frontend-specialist, mobile-specialist |
+| Backend | backend-specialist, database-specialist, auth-specialist |
+| Features | payment-specialist, ai-engineer, realtime-specialist, integration-specialist |
+| Quality | testing-specialist, performance-specialist, security-specialist |
+| Operations | devops-specialist, data-specialist |
+
+### 3. Workflow
+
+```
+1. Load Memory -> Understand context
+2. Analyze Project -> Identify gaps
+3. Create Plan -> Define milestones
+4. Build Team -> Select specialists
+5. Execute Tasks -> Work in parallel
+6. Verify Quality -> Test and review
+7. Update Memory -> Save progress
+8. Deliver Results -> Report to user
+```
+
+## Supported Stacks
 
 ### JavaScript/TypeScript
-- **Next.js 14** - Full-stack React framework
-- **React + Vite** - SPA moderne
-- **Vue.js + Nuxt** - Progressive framework
-- **Node.js + Express** - Backend API
-- **tRPC** - End-to-end type safety
+- Next.js 14+ (App Router)
+- React + Vite
+- Vue.js + Nuxt
+- Node.js + Express
+- tRPC
 
 ### Python
-- **FastAPI** - API moderne ad alte prestazioni
-- **Django** - Full-stack web framework
-- **Flask** - Microframework
+- FastAPI
+- Django
+- Flask
 
 ### Go
-- **Gin/Echo/Fiber** - Web frameworks
-- **gRPC** - Microservices
+- Gin/Echo/Fiber
 
 ### Rust
-- **Actix-web/Axum** - Web frameworks
+- Actix-web/Axum
 
 ### Mobile
-- **React Native + Expo** - Cross-platform mobile
-- **Flutter** - Cross-platform UI
+- React Native + Expo
+- Flutter
 
 ### Database
-- **PostgreSQL** - Relazionale avanzato
-- **MySQL/MariaDB** - Relazionale classico
-- **MongoDB** - NoSQL document
-- **Redis** - Cache e sessioni
+- PostgreSQL
+- MySQL/MariaDB
+- MongoDB
+- Redis
 
 ### Deploy
-- **Vercel** - Frontend, serverless
-- **Railway** - Full-stack
-- **Fly.io** - App deployment
-- **AWS/GCP/Azure** - Enterprise
+- Vercel
+- Railway
+- Fly.io
+- AWS/GCP/Azure
 
-## 🎨 Come Funziona
+## Examples
 
-### 1. Discovery Phase
-Tu mi dici cosa vuoi creare e io ti faccio domande intelligenti:
-- Tipo di applicazione
-- Feature essenziali
-- Target utenti
-- Vincoli tecnici e budget
+### Example 1: New SaaS
 
-### 2. Analysis Phase
-Analizzo le tue risposte e suggerisco:
-- Stack tecnologico ottimale
-- Architettura consigliata
-- Agenti necessari
-- Stima costi e tempi
+```
+You: "I want to create a SaaS for project management"
 
-### 3. Generation Phase
-Genero automaticamente:
-- Orchestratore personalizzato
-- Agenti specializzati
-- Piano di sviluppo dettagliato
-- Documentazione completa
-
-### 4. Kickoff Phase
-Ti aiuto a iniziare:
-- Setup progetto
-- Primo task con AI
-- Best practices
-
-## 📋 Piano di Sviluppo Automatico
-
-Il wizard genera un piano dettagliato con:
-
-```markdown
-## Fase 1: Setup & Infrastructure (2-3 giorni)
-- [ ] Setup progetto Next.js + TypeScript
-- [ ] Database schema con Prisma
-- [ ] Autenticazione con NextAuth
-- [ ] Deploy config su Vercel
-
-## Fase 2: Core Features (1-2 settimane)
-- [ ] Dashboard utente
-- [ ] Tracker abitudini
-- [ ] Statistiche e grafici
-- [ ] Notifiche push
-
-## Fase 3: Advanced Features (1-2 settimane)
-- [ ] AI recommendations
-- [ ] Social features
-- [ ] Gamification
-- [ ] Export dati
-
-## Fase 4: Polish & Launch (3-5 giorni)
-- [ ] Test E2E
-- [ ] Performance optimization
-- [ ] Security audit
-- [ ] Deploy produzione
+AI creates:
+- Stack: Next.js + PostgreSQL + Prisma
+- Team: 10 specialists
+- Plan: 6 weeks
+- Files: 50+
 ```
 
-## 🤖 Agenti Specializzati
+### Example 2: Existing Project
 
-### Base Agents (sempre inclusi)
-- **@frontend** - UI/UX, componenti, pagine
-- **@backend** - API, logica business, auth
-- **@database** - Schema, migrations, query
-- **@qa-engineer** - Test unit, E2E, integration
-- **@devops** - Deploy, CI/CD, monitoring
+```
+You: "Add payment feature to my app"
 
-### Specialized Agents (opzionali)
-- **@ai-engineer** - Modelli ML, recommendations
-- **@mobile** - React Native, Flutter
-- **@payments** - Stripe, PayPal integration
-- **@security** - Audit, penetration testing
-- **@websocket** - Real-time features
-
-## 💡 Esempi di Utilizzo
-
-### Esempio 1: SaaS App
-**Tu:** "Voglio creare un SaaS per gestione progetti con team collaboration"
-
-**AI genera:**
-- Next.js + TypeScript + PostgreSQL
-- 5 agenti specializzati
-- Piano 6 settimane
-
-### Esempio 2: E-commerce
-```bash
-$ python3 wizard/wizard.py
-? Tipo progetto: E-commerce
-? Nome: ArtisanMarket
-? Feature: Catalog, Cart, Checkout, Reviews, Vendor dashboard
-? Stack: Suggerisci tu
-? Budget: $100-200
-
-# Genera:
-# - Next.js + Stripe + PostgreSQL
-# - 6 agenti (incluso @payments)
-# - Piano 8 settimane
+AI:
+- Loads existing memory
+- Identifies current stack
+- Creates payment-specialist
+- Implements Stripe integration
+- Updates memory
 ```
 
-### Esempio 3: Mobile App
-```bash
-$ python3 wizard/wizard.py
-? Tipo progetto: Mobile App
-? Nome: FitnessTracker
-? Feature: Workout tracking, Progress charts, Social, Notifications
-? Stack: Suggerisci tu
-? Budget: $50-150
+## Project Structure
 
-# Genera:
-# - React Native + Expo + Node.js
-# - 6 agenti (incluso @mobile)
-# - Piano 10 settimane
+```
+your-project/
+├── .opencode/
+│   ├── agents/          # Project-specific agents
+│   │   ├── workout-specialist.md
+│   │   └── payment-specialist.md
+│   └── memory/          # Permanent memory
+│       ├── project.md
+│       ├── errors.md
+│       ├── successes.md
+│       ├── progress.md
+│       └── decisions.md
+└── PLAN.md              # Development roadmap
 ```
 
-## 🔧 Personalizzazione
+## Token Efficiency
 
-### Modifica Agenti
-Dopo la generazione, puoi personalizzare gli agenti:
+| Scenario | Without Memory | With Memory |
+|----------|----------------|-------------|
+| New session | 5000+ tokens | 500 tokens |
+| Project analysis | 3000 tokens | 0 tokens |
+| Error context | 2000 tokens | 200 tokens |
+| **Total** | **~10000 tokens** | **~700 tokens** |
 
-```bash
-# Modifica agente frontend
-nano .opencode/agents/frontend.md
+**Savings: ~93%**
 
-# Aggiungi nuovo agente
-nano .opencode/agents/security.md
-```
+## Documentation
 
-### Aggiungi Stack Custom
-Se il tuo stack non è supportato:
+- [README.md](README.md) - This file
+- [ADVANCED.md](ADVANCED.md) - Advanced usage
+- [docs/WORKFLOW.md](docs/WORKFLOW.md) - Detailed workflow
+- [docs/CUSTOMIZATION.md](docs/CUSTOMIZATION.md) - Customization guide
 
-1. Modifica `suggestions/stack_suggestions.json`
-2. Aggiungi il tuo stack
-3. Rilancia il wizard
+## Contributing
 
-### Template Custom
-Crea template personalizzati in `templates/`:
-
-```markdown
-# Custom Agent Template
-
-## Ruolo
-Sei uno specialista in [TECHNOLOGY].
-
-## Stack
-- [STACK_DETAILS]
-
-## Responsabilità
-- [RESPONSIBILITIES]
-```
-
-## 📊 Confronto 1.0 vs 2.0
-
-| Feature | 1.0 | 2.0 |
-|---------|-----|-----|
-| Setup | Manuale (15-30 min) | Wizard (5 min) |
-| Personalizzazione | Post-setup | Durante setup |
-| Suggerimenti | Nessuno | AI-powered |
-| Piano sviluppo | Manuale | Automatico |
-| Agenti | Generici | Su misura |
-| Stack supportati | 8 | 20+ |
-| Learning curve | Media | Bassa |
-
-## 🎓 Best Practices
-
-### 1. Sii Specifico nelle Risposte
-❌ "Voglio un'app"
-✅ "Voglio un SaaS per gestione progetti con team collaboration"
-
-### 2. Prioritizza le Feature
-Seleziona solo le feature essenziali per la MVP. Puoi aggiungere il resto dopo.
-
-### 3. Scegli Budget Realistico
-- **$0-50**: Hobby/side project
-- **$50-100**: Startup/MVP
-- **$100-300**: Business/prodotto completo
-- **$300+**: Enterprise/scaling
-
-### 4. Timeline Realistica
-- **2-4 settimane**: MVP minimale (3-5 feature)
-- **1-2 mesi**: MVP completa (5-10 feature)
-- **3-6 mesi**: Prodotto completo (10-20 feature)
-
-### 5. Testa Subito
-Dopo la generazione, lancia il primo task:
-```
-"Setup progetto completo con database e autenticazione"
-```
-
-## 🚨 Troubleshooting
-
-### Python non trovato
-```bash
-# macOS
-brew install python
-
-# Ubuntu/Debian
-sudo apt-get install python3 python3-pip
-
-# Windows
-# Scarica da python.org
-```
-
-### Dependencies error
-```bash
-# Aggiorna pip
-pip3 install --upgrade pip
-
-# Reinstalla dependencies
-pip3 install -r requirements.txt --force-reinstall
-```
-
-### Wizard non parte
-```bash
-# Verifica permessi
-chmod +x wizard/wizard.py
-
-# Esegui con python3 esplicito
-python3 wizard/wizard.py
-```
-
-## 🔄 Roadmap
-
-### v2.1 (Prossimo)
-- [ ] Supporto Flutter
-- [ ] Integration con GitHub Codespaces
-- [ ] Template per microservices
-- [ ] Multi-language agents (ITA/ENG/ESP)
-
-### v2.2
-- [ ] AI-powered code review
-- [ ] Automatic refactoring suggestions
-- [ ] Performance optimization agent
-- [ ] Security audit agent
-
-### v2.3
-- [ ] Visual project builder
-- [ ] Real-time collaboration
-- [ ] Marketplace per template
-- [ ] Integration con Figma
-
-## 🤝 Contributing
-
-Contributions sono benvenute!
-
-1. Fork il progetto
-2. Crea feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit (`git commit -m 'feat: Add AmazingFeature'`)
-4. Push (`git push origin feature/AmazingFeature`)
-5. Apri Pull Request
-
-### Aggiungi Nuovo Stack
-1. Fork il repo
-2. Aggiungi stack in `suggestions/stack_suggestions.json`
-3. Crea template agente in `templates/agents/`
-4. Testa con wizard
+1. Fork the repo
+2. Create feature branch
+3. Add new agent templates
+4. Test with real projects
 5. Submit PR
 
-## 📄 License
+## License
 
-MIT License - vedi [LICENSE](LICENSE) per dettagli.
+MIT License
 
-## 🙏 Acknowledgments
+## Support
 
-- Ispirato da [Claude Code Agent Teams](https://code.claude.com/docs/en/agent-teams)
-- Powered by [OpenCode](https://opencode.ai)
-- Community contributors
-
-## 📞 Support
-
-- **Documentation**: [README.md](README.md)
-- **Issues**: [GitHub Issues](https://github.com/tuo-username/opencode-agents-2.0/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/tuo-username/opencode-agents-2.0/discussions)
+- Documentation: README.md
+- Issues: GitHub Issues
+- Discussions: GitHub Discussions
 
 ---
 
-**Ready to ship 4x faster? Start the wizard! 🚀**
-
-```bash
-python3 wizard/wizard.py
-```
+**Ready to build 4x faster? Start talking to the AI!**

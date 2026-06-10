@@ -1,415 +1,421 @@
-# Guida Avanzata - OpenCode Agents 2.0
+# Advanced Guide - OpenCode Agents 3.0
 
-## 🎯 Workflow Avanzato
+## Memory System
 
-### 1. Multi-Project Setup
+The memory system is the core innovation of v3.0. It stores project context permanently, reducing token consumption by ~93%.
 
-Puoi usare OpenCode Agents per gestire più progetti contemporaneamente:
-
-```bash
-# Progetto 1: SaaS
-cd ~/projects/saas-app
-python3 ~/opencode-agents-2.0/wizard/wizard.py
-
-# Progetto 2: Mobile
-cd ~/projects/mobile-app
-python3 ~/opencode-agents-2.0/wizard/wizard.py
-
-# Ogni progetto ha il suo setup personalizzato
-```
-
-### 2. Template Custom
-
-Crea template personalizzati per il tuo team:
-
-```bash
-# Crea template custom
-mkdir -p templates/agents/my-company
-
-# Template frontend con convenzioni aziendali
-cat > templates/agents/my-company/frontend.md << 'EOF'
-# Frontend Developer Agent - MyCompany
-
-## Stack
-- Next.js 14 + TypeScript
-- Tailwind CSS + shadcn/ui
-- Zustand per state management
-
-## Convenzioni Aziendali
-- Usa sempre i componenti da @mycompany/ui
-- Segui il design system in docs/design-system.md
-- Test coverage minimo 85%
-- Code review obbligatorio con 2 approvazioni
-EOF
-```
-
-### 3. Agenti Custom
-
-Aggiungi agenti specializzati per il tuo dominio:
-
-```bash
-# Crea agente custom
-cat > .opencode/agents/blockchain.md << 'EOF'
-# Blockchain Developer Agent
-
-## Ruolo
-Sei uno specialista in sviluppo blockchain e smart contracts.
-
-## Stack
-- Solidity
-- Hardhat
-- Ethers.js
-- The Graph
-
-## Responsabilità
-- Smart contracts
-- Integration web3
-- Gas optimization
-- Security audit
-EOF
-```
-
-### 4. Piano Sviluppo Custom
-
-Modifica il piano generato:
-
-```bash
-# Apri PLAN.md
-nano PLAN.md
-
-# Aggiungi fasi custom
-## Fase 6: Blockchain Integration
-- [ ] Smart contract deployment
-- [ ] Web3 integration
-- [ ] Wallet connection
-```
-
-## 🔧 Configurazione Avanzata
-
-### Variabili Ambiente Wizard
-
-```bash
-# Usa stack specifico
-export OPENCODE_DEFAULT_STACK="nextjs"
-python3 wizard/wizard.py
-
-# Lingua italiana
-export OPENCODE_LANGUAGE="it"
-python3 wizard/wizard.py
-
-# Modalità verbose
-export OPENCODE_VERBOSE="true"
-python3 wizard/wizard.py
-```
-
-### Config File
-
-Crea `.opencode-config.json` nella root del progetto:
-
-```json
-{
-  "default_stack": "nextjs",
-  "language": "it",
-  "agents": {
-    "include": ["frontend", "backend", "database"],
-    "exclude": ["devops"]
-  },
-  "custom_templates": "./templates/agents/my-company",
-  "plan_phases": 6
-}
-```
-
-### Integration con CI/CD
-
-```yaml
-# .github/workflows/setup.yml
-name: Project Setup
-on: [workflow_dispatch]
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - run: pip install -r requirements.txt
-      - run: python3 wizard/wizard.py --non-interactive
-        env:
-          PROJECT_NAME: ${{ github.event.inputs.project_name }}
-          PROJECT_TYPE: ${{ github.event.inputs.project_type }}
-```
-
-## 📊 Analytics e Metriche
-
-### Traccia Utilizzo Agenti
-
-```bash
-# Log attività agenti
-cat > .opencode/agent-usage.json << 'EOF'
-{
-  "agents_called": {
-    "frontend": 15,
-    "backend": 12,
-    "database": 8,
-    "qa-engineer": 10,
-    "devops": 5
-  },
-  "tasks_completed": 50,
-  "time_saved_hours": 120
-}
-EOF
-```
-
-### Report Performance
-
-```python
-# scripts/generate_report.py
-import json
-from datetime import datetime
-
-def generate_report():
-    with open('.opencode/agent-usage.json') as f:
-        data = json.load(f)
-    
-    print("📊 Report Performance Agenti")
-    print(f"Data: {datetime.now().strftime('%Y-%m-%d')}")
-    print(f"\nAgenti più usati:")
-    for agent, count in sorted(data['agents_called'].items(), key=lambda x: x[1], reverse=True):
-        print(f"  @{agent}: {count} task")
-    
-    print(f"\nTask completati: {data['tasks_completed']}")
-    print(f"Tempo risparmiato: {data['time_saved_hours']} ore")
-
-if __name__ == "__main__":
-    generate_report()
-```
-
-## 🎨 Pattern di Utilizzo Avanzati
-
-### Pattern 1: Feature Flag
-
-Implementa feature con flag per rollout graduale:
+### Memory Structure
 
 ```
-"Implementa sistema notifiche con feature flag:
-- Flag 'notifications_v1' per versione base
-- Flag 'notifications_v2' per versione avanzata
-- Admin panel per gestire flag
-- A/B testing per engagement"
+.opencode/memory/
+├── project.md      # Stack, structure, conventions
+├── errors.md       # Mistakes to avoid
+├── successes.md    # What works well
+├── progress.md     # Current status
+└── decisions.md    # Architecture decisions
 ```
 
-### Pattern 2: Microservices
+### How Memory Works
 
-Dividi il progetto in microservizi:
+#### Session Start
+1. Orchestrator checks if `.opencode/memory/` exists
+2. If exists, loads all memory files
+3. If not exists, creates memory structure and analyzes project
 
-```
-"Architettura microservices per e-commerce:
-- Service: auth-service (Node.js)
-- Service: product-service (Python)
-- Service: order-service (Go)
-- Service: payment-service (Node.js)
-- API Gateway (Kong)
-- Message Queue (RabbitMQ)"
-```
+#### During Work
+1. Builder checks `errors.md` before writing code
+2. Builder follows patterns from `successes.md`
+3. Reviewer adds new errors to `errors.md`
+4. Orchestrator updates `progress.md` after each task
 
-### Pattern 3: Event-Driven
+#### Session End
+1. Orchestrator updates all memory files
+2. Saves progress, decisions, errors, successes
+3. Next session starts with full context
 
-Implementa architettura event-driven:
+### Memory Files Format
 
-```
-"Sistema event-driven per real-time updates:
-- Event bus con Redis Streams
-- Event sourcing per audit trail
-- CQRS per read/write separation
-- WebSocket per notifiche real-time"
-```
-
-### Pattern 4: AI Pipeline
-
-Crea pipeline AI completa:
-
-```
-"Pipeline AI per recommendations:
-- Data collection (user behavior)
-- Data preprocessing (cleaning, normalization)
-- Model training (collaborative filtering)
-- Model serving (FastAPI)
-- A/B testing framework
-- Monitoring e retraining automatico"
-```
-
-## 🔐 Security Best Practices
-
-### 1. Secrets Management
-
-```bash
-# Non committare mai secrets
-echo ".env" >> .gitignore
-echo ".env.*" >> .gitignore
-
-# Usa variabili ambiente
-export DATABASE_URL="postgresql://..."
-export NEXTAUTH_SECRET="..."
-```
-
-### 2. Agent Permissions
-
-Limita permessi agenti:
+#### project.md
+Stores the complete project context:
 
 ```markdown
-# .opencode/agents/backend.md
+# Project Context
 
+## Stack
+- Frontend: Next.js 16 + TypeScript + Tailwind + shadcn/ui
+- Backend: tRPC + NextAuth v5
+- Database: PostgreSQL + Prisma 7
+- Deploy: Vercel + Railway
+
+## Structure
+- app/(auth)/ - Login, Register
+- app/(dashboard)/ - Dashboard, Workout, Nutrition, Habits
+- server/routers/ - 13 tRPC routers
+
+## Key Files
+- lib/auth.ts - NextAuth config (JWT strategy)
+- lib/prisma.ts - Prisma with adapter-pg
+
+## Conventions
+- buttonVariants pattern (no asChild)
+- Import from @/app/generated/prisma/client
+```
+
+#### errors.md
+Stores mistakes to avoid:
+
+```markdown
+# Errors to Avoid
+
+## Prisma 7
+- Wrong: new PrismaClient()
+- Right: new PrismaClient({ adapter })
+- Wrong: Import from @prisma/client
+- Right: Import from @/app/generated/prisma/client
+
+## NextAuth v5
+- Wrong: import { getServerSession } from 'next-auth'
+- Right: import { auth } from '@/lib/auth'
+```
+
+#### successes.md
+Stores patterns that work:
+
+```markdown
+# What Works Well
+
+## Auth Flow
+- CredentialsProvider + JWT strategy
+- getToken() in middleware (Edge Runtime compatible)
+
+## UI
+- Colorful gradients (purple/pink/orange)
+- Sidebar + Header layout pattern
+```
+
+#### progress.md
+Stores current status:
+
+```markdown
+# Project Progress
+
+## Completed
+- [x] Database schema (35+ models)
+- [x] Auth (NextAuth v5)
+- [x] Landing page
+- [x] Login/Register
+
+## In Progress
+- [ ] Workout CRUD
+- [ ] Nutrition tracking
+
+## Not Started
+- [ ] Payment integration
+- [ ] AI microservice
+```
+
+#### decisions.md
+Stores architecture decisions:
+
+```markdown
+# Architecture Decisions
+
+## Decision 1: JWT Strategy Only
+- Why: Edge Runtime incompatible with Prisma
+- Result: Fast, no database sessions overhead
+
+## Decision 2: adapter-pg for Prisma
+- Why: Prisma 7 requires explicit adapter
+- Result: Works with PostgreSQL
+```
+
+## Agent System
+
+### Core Team (always present)
+
+| Agent | Role | File |
+|-------|------|------|
+| orchestrator | CEO, manages lifecycle | agents/orchestrator.md |
+| planner | Analysis and planning | agents/planner.md |
+| builder | Code execution | agents/builder.md |
+| reviewer | QA and code review | agents/reviewer.md |
+| documenter | Documentation | agents/documenter.md |
+
+### Specialized Teams (created as needed)
+
+#### Frontend Team
+| Agent | Specialization |
+|-------|---------------|
+| ui-specialist | Tailwind, shadcn/ui, CSS |
+| frontend-specialist | React, Next.js, Server Components |
+| mobile-specialist | React Native, Flutter |
+
+#### Backend Team
+| Agent | Specialization |
+|-------|---------------|
+| backend-specialist | APIs, tRPC, routes |
+| database-specialist | Prisma, SQL, migrations |
+| auth-specialist | NextAuth, security |
+
+#### Feature Team
+| Agent | Specialization |
+|-------|---------------|
+| payment-specialist | Stripe, PayPal |
+| ai-engineer | PyTorch, ML models |
+| realtime-specialist | WebSocket, Socket.io |
+| integration-specialist | Third-party APIs |
+
+#### Quality Team
+| Agent | Specialization |
+|-------|---------------|
+| testing-specialist | Unit, E2E, integration tests |
+| performance-specialist | Optimization, caching |
+| security-specialist | Audit, OWASP |
+
+#### Operations Team
+| Agent | Specialization |
+|-------|---------------|
+| devops-specialist | Deploy, CI/CD |
+| data-specialist | Analytics, reporting |
+
+### Agent Selection Logic
+
+The orchestrator selects agents based on project analysis:
+
+- **Simple project (blog, portfolio)**: 5-6 agents
+- **Standard project (SaaS, e-commerce)**: 8-12 agents
+- **Complex project (enterprise, marketplace)**: 15-20 agents
+
+## Advanced Workflows
+
+### Multi-Project Management
+
+Manage multiple projects simultaneously:
+
+```bash
+# Project 1: SaaS
+cd ~/projects/saas-app
+# Orchestrator loads project-specific memory
+
+# Project 2: Mobile
+cd ~/projects/mobile-app
+# Orchestrator loads different memory
+```
+
+### Custom Agent Templates
+
+Create project-specific agents:
+
+```markdown
+# my-company-frontend.md
+
+## Role
+Frontend developer following MyCompany design system.
+
+## Stack
+- React 18
+- Next.js 14
+- Tailwind CSS
+- MyCompany UI library
+
+## Conventions
+- Use MyCompany components only
+- Follow design-system.md
+- Test coverage min 85%
+
+## Output
+Report: components created, tests written, design compliance
+```
+
+### Memory Sharing
+
+Share memory across team members:
+
+```bash
+# Commit memory to git
+git add .opencode/memory/
+git commit -m "chore: update project memory"
+
+# Team members pull memory
+git pull
+# Next session uses shared memory
+```
+
+### Conditional Agent Creation
+
+Agents are created based on project needs:
+
+```
+IF project has payments:
+  CREATE payment-specialist
+
+IF project has AI features:
+  CREATE ai-engineer
+
+IF project has real-time:
+  CREATE realtime-specialist
+
+IF project is mobile:
+  CREATE mobile-specialist
+```
+
+## Performance Optimization
+
+### Token Reduction
+
+| Operation | Without Memory | With Memory |
+|-----------|---------------|-------------|
+| Session start | 5000 tokens | 500 tokens |
+| Project analysis | 3000 tokens | 0 tokens |
+| Error context | 2000 tokens | 200 tokens |
+| Convention check | 1000 tokens | 100 tokens |
+| **Total** | **11000 tokens** | **800 tokens** |
+
+**Savings: ~93%**
+
+### Parallel Execution
+
+Multiple agents work simultaneously:
+
+```
+Orchestrator delegates:
+  @frontend-specialist: Create workout page
+  @backend-specialist: Create workout API
+  @database-specialist: Create workout schema
+
+All three work in parallel.
+Orchestrator integrates results.
+```
+
+### Incremental Updates
+
+Memory is updated incrementally, not rebuilt:
+
+```
+After each task:
+  - Update progress.md (add completed task)
+  - Update errors.md (if new error found)
+  - Update successes.md (if new pattern works)
+
+Full rebuild only on major changes.
+```
+
+## Security Best Practices
+
+### Secrets Management
+
+Never store secrets in memory:
+
+```markdown
+# Wrong
+DATABASE_URL=postgresql://user:password@host/db
+
+# Right
+DATABASE_URL=<stored in .env, not in memory>
+```
+
+### Agent Permissions
+
+Control what agents can access:
+
+```markdown
+# agents/builder.md
 ## Permissions
-- ✅ Read/Write: server/routers/
-- ✅ Read/Write: lib/
-- ❌ No access: .env files
-- ❌ No access: secrets/
-- ❌ No deploy permissions
+- Read: *
+- Write: src/, lib/
+- Deny: .env, secrets/
 ```
 
-### 3. Code Review
+### Code Review
+
+Always review before merging:
+
+```
+1. Builder writes code
+2. Reviewer checks code
+3. Security specialist audits
+4. Orchestrator approves
+5. Merge to main
+```
+
+## Troubleshooting
+
+### Memory Not Loading
+
+Check if `.opencode/memory/` exists:
 
 ```bash
-# Pre-commit hook per security scan
-cat > .git/hooks/pre-commit << 'EOF'
-#!/bin/bash
-# Scan for secrets
-if git diff --cached | grep -E "(password|secret|key|token)" | grep -v "example"; then
-    echo "❌ Potential secret detected!"
-    exit 1
-fi
-EOF
-chmod +x .git/hooks/pre-commit
+ls -la .opencode/memory/
+# Should show 5 .md files
 ```
 
-## 📈 Scaling
+### Agent Not Found
 
-### 1. Multi-Team Setup
+Verify agent file exists:
 
 ```bash
-# Team frontend
-.opencode/teams/frontend/
-  orchestrator.md
-  agents/
-    frontend.md
-    ui-ux.md
-
-# Team backend
-.opencode/teams/backend/
-  orchestrator.md
-  agents/
-    backend.md
-    database.md
-
-# Team mobile
-.opencode/teams/mobile/
-  orchestrator.md
-  agents/
-    mobile.md
-    api.md
+ls -la .opencode/agents/
+# Should show project-specific agents
 ```
 
-### 2. Enterprise Features
+### High Token Usage
 
-```json
-{
-  "enterprise": {
-    "sso": true,
-    "audit_log": true,
-    "compliance": ["SOC2", "GDPR", "HIPAA"],
-    "monitoring": {
-      "datadog": true,
-      "sentry": true,
-      "pagerduty": true
-    }
-  }
-}
-```
-
-### 3. Performance Optimization
+Check if memory is being used:
 
 ```bash
-# Cache agent responses
-mkdir -p .opencode/cache
-
-# Parallel agent execution
-export OPENCODE_PARALLEL="true"
-
-# Agent timeout
-export OPENCODE_TIMEOUT="300"
+# First session (no memory): ~10000 tokens
+# Subsequent sessions (with memory): ~800 tokens
 ```
 
-## 🧪 Testing
+### Build Failing
 
-### Test Wizard
+Check memory for known errors:
 
 ```bash
-# Test interattivo
-python3 wizard/wizard.py
-
-# Test non-interattivo (CI/CD)
-python3 wizard/wizard.py --non-interactive \
-  --project-name "Test Project" \
-  --project-type "Web Application" \
-  --stack "nextjs"
+cat .opencode/memory/errors.md
+# Look for similar errors and fixes
 ```
 
-### Test Agenti
+## Best Practices
 
+1. **Always commit memory** - Share with team
+2. **Update after each session** - Keep memory fresh
+3. **Review errors regularly** - Learn from mistakes
+4. **Document decisions** - Maintain rationale
+5. **Clean stale entries** - Remove outdated info
+
+## Migration from v2.0
+
+### Step 1: Backup
 ```bash
-# Test singolo agente
-python3 scripts/test_agent.py frontend
-
-# Test tutti gli agenti
-python3 scripts/test_agents.py
-
-# Test integration
-python3 scripts/test_integration.py
-```
-
-## 📚 Risorse
-
-### Documentazione
-- [README.md](./README.md) - Guida principale
-- [USAGE.md](./USAGE.md) - Guida utilizzo
-- [STACKS-INDEX.md](./STACKS-INDEX.md) - Stack supportati
-- [ADVANCED.md](./ADVANCED.md) - Questa guida
-
-### Community
-- [GitHub Discussions](https://github.com/tuo-username/opencode-agents-2.0/discussions)
-- [Discord Server](https://discord.gg/opencode)
-- [Twitter](https://twitter.com/opencode)
-
-### Video Tutorial
-- [Quick Start (5 min)](https://youtube.com/watch?v=...)
-- [Advanced Features (15 min)](https://youtube.com/watch?v=...)
-- [Enterprise Setup (30 min)](https://youtube.com/watch?v=...)
-
-## 🔄 Migration da 1.0
-
-Se hai già progetti con OpenCode Agents 1.0:
-
-```bash
-# Backup setup esistente
 cp -r .opencode .opencode.backup
-
-# Esegui wizard 2.0
-python3 ~/opencode-agents-2.0/wizard/wizard.py
-
-# Merge configurazioni
-# Il wizard mantiene le personalizzazioni esistenti
 ```
 
-## 🎓 Certification
+### Step 2: Create Memory
+```bash
+mkdir -p .opencode/memory
+# Create initial memory files
+```
 
-Diventa un OpenCode Agents Expert:
+### Step 3: Analyze Project
+```bash
+# Orchestrator analyzes existing codebase
+# Generates memory from current state
+```
 
-1. Completa 10 progetti con il wizard
-2. Crea 3 template custom
-3. Contribuisci alla community
-4. Ottieni certificazione: [certification.opencode.ai](https://certification.opencode.ai)
+### Step 4: Test
+```bash
+# Run orchestrator
+# Verify memory loads correctly
+# Check agent creation
+```
+
+## Support
+
+- Documentation: README.md
+- Issues: GitHub Issues
+- Discussions: GitHub Discussions
 
 ---
 
-**Ready for advanced usage? 🚀**
+**Ready for advanced usage? Start building!**
