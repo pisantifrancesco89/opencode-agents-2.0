@@ -1,33 +1,36 @@
-# Project Progress
+# Project Progress — opencode-agents-2.0
+
+## Status
+✅ **v3.2 Complete** — Interactive onboarding + setup wizard
 
 ## Completed
 - [x] v3.0 Initial release with memory system and 20+ agents
 - [x] v3.1 Auto-delegation overhaul
-- [x] Standardized agent naming (all specialists use `-specialist` suffix)
-- [x] Frontmatter YAML on all agents for OpenCode auto-detection
-- [x] Translated Italian agents (backend, frontend, qa-engineer) to English
-- [x] Expanded 10 small specialist agents (25→80-300 lines each)
-- [x] Updated orchestrator.md with auto-delegation protocol
-- [x] Fixed SKILL.md broken path reference
-- [x] Created adapters/opencode.md (was missing)
-- [x] Updated setup.sh to install all agents globally
-- [x] Created CHANGELOG.md
-- [x] Removed duplicate stub agent files
-- [x] Fixed stack_suggestions.json (agent names + translated Italian→English)
-- [x] Fixed setup.sh to only copy specialist agents to global dir (not framework templates)
-- [x] Cleaned up global agents dir (removed old duplicate files)
-- [x] Added opencode.jsonc template + setup.sh generates it per-project
-- [x] Expanded orchestrator agent reference table with 16 specialists
-- [x] Removed empty planner/ and generator/ directories
-- [x] Translated examples/habittracker-pro/README.md to English
+- [x] v3.2 Interactive wizard + onboarding
 
-## Current Status
-- Repository is clean, standardized, and ready for public release
-- Orchestrator auto-delegates to specialists without manual selection
-- All agents have full prompts with patterns and examples
+### v3.2 Specific
+- [x] setup.sh complete rewrite — interactive wizard with 12+ questions
+- [x] install.sh — one-liner installer (curl|bash compatible)
+- [x] First Contact Protocol in orchestrator.md — structured interview
+- [x] New project wizard (type, stack, features, timeline, budget)
+- [x] Existing project wizard (state, stack, help needed, conventions)
+- [x] Auto-detection of tech stack from project files
+- [x] Memory templates rewritten with guiding questions
+- [x] SKILL.md updated to v3.2
+- [x] setup.sh generates opencode.jsonc per-project
+- [x] Global cleanup: framework templates no longer in agents dir
+- [x] Old agent file cleanup during install
+- [x] stack_suggestions.json fixed (names + translated)
+- [x] examples/habittracker-pro translated to English
+
+## Current State
+- Setup wizard: interactive, asks relevant questions, pre-fills memory
+- Orchestrator: runs structured interview on first contact
+- Global install: clean 21 agents (5 core + 16 specialist)
+- Project install: all agents + framework templates + config files
 
 ## Next Steps
 - [ ] Add CI/CD pipeline (GitHub Actions)
-- [ ] Add more framework-specific templates
-- [ ] Create showcase videos / demos
 - [ ] Publish to npm as CLI tool
+- [ ] Create showcase demos
+- [ ] Get user feedback on onboarding flow

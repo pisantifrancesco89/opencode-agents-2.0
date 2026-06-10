@@ -1,31 +1,47 @@
 # Project Context
 
-## Template
+<!--
+  This file is the AI's "memory" of your project.
+  After the onboarding interview, the AI fills this in.
+  Update it as the project evolves.
+-->
 
-Copy this file to your project and fill in the details.
+## Quick Facts
+- **Project**: [Name]
+- **Type**: [Web App / Mobile / API / etc.]
+- **Description**: [What does it do? What problem does it solve?]
 
 ## Stack
+- **Frontend**: [Framework + Language]
+- **Backend**: [Framework + Language]
+- **Database**: [Database + ORM]
+- **Auth**: [Auth solution]
+- **Payments**: [Payment provider]
+- **Deploy**: [Deployment platform]
+- **Other**: [Any other tech]
 
-- Frontend: [Framework + Language]
-- Backend: [Framework + Language]
-- Database: [Database + ORM]
-- Deploy: [Platform]
-- Auth: [Auth solution]
-
-## Structure
-
-- [Directory]: [Purpose]
-- [Directory]: [Purpose]
-- [Directory]: [Purpose]
+## Project Structure
+```
+├── src/           → Source code
+├── public/        → Static assets
+├── prisma/        → Database schema (if applicable)
+├── tests/         → Test files
+└── [other dirs]   → [purpose]
+```
 
 ## Key Files
-
-- [file.ts] - [Purpose]
-- [file.ts] - [Purpose]
-- [file.ts] - [Purpose]
+- `package.json` → Dependencies and scripts
+- `tsconfig.json` → TypeScript config
+- `.env` → Environment variables
+- [other files] → [purpose]
 
 ## Conventions
+- [Coding conventions / style guide]
+- [Architecture patterns used]
+- [Testing approach]
+- [Git workflow]
 
-- [Convention 1]
-- [Convention 2]
-- [Convention 3]
+## Goals
+- [Short-term: what to build next]
+- [Medium-term: upcoming features]
+- [Long-term: vision]

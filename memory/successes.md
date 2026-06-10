@@ -1,27 +1,36 @@
 # What Works Well
 
-## Template
+<!--
+  The AI fills this with patterns and approaches that work well for THIS project.
+  This builds up a "wisdom" file over time — the AI learns what works.
+-->
 
-Copy this file to your project and add patterns that work.
+## Architecture Patterns
 
-## Auth Patterns
+### [Pattern name]
+- **What**: [Description]
+- **Why it works**: [Benefit]
+- **When to use**: [Context]
 
-- [Pattern] - [Why it works]
+## Code Patterns
 
-## UI Patterns
+### [Pattern]
+- **What**: [Code pattern description]
+- **Example**:
+```typescript
+// Example code
+```
+- **Why**: [Benefit]
 
-- [Pattern] - [Why it works]
+## Stack-Specific Wins
 
-## API Patterns
+### [Framework / Library]
+- [What works well with this technology]
 
-- [Pattern] - [Why it works]
-
-## Database Patterns
-
-- [Pattern] - [Why it works]
+## Workflow Wins
+- [Process or approach that saved time]
 
 ## How to Add
-
 When something works well:
 1. Add the pattern
 2. Add why it works

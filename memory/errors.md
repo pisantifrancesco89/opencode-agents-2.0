@@ -1,35 +1,31 @@
 # Errors to Avoid
 
-## Template
+<!--
+  The AI fills this as it encounters and fixes issues.
+  This prevents re-making the same mistakes.
+-->
 
-Copy this file to your project and add errors you encounter.
+## Common Mistakes
 
-## Framework Errors
+### [Category, e.g. "Database"]
+- **Issue**: [Description of the problem]
+- **Fix**: [How it was solved]
+- **When it happens**: [Context / trigger]
 
-### Next.js
-- [Error] - [Fix]
+### [Category, e.g. "TypeScript"]
+- **Issue**: [Description]
+- **Fix**: [Solution]
+- **When it happens**: [Context]
 
-### Prisma
-- [Error] - [Fix]
+## Anti-Patterns
+- [Pattern to avoid] → [Better alternative]
 
-### TypeScript
-- [Error] - [Fix]
-
-## Common Patterns
-
-### Wrong
-```code
-// Bad pattern here
-```
-
-### Right
-```code
-// Good pattern here
-```
+## Quick Fixes
+- [Error message] → [Fix command or code change]
+- [Error message] → [Fix command or code change]
 
 ## How to Add
-
-When you find an error:
+When you encounter an error:
 1. Add the error description
 2. Add the fix that worked
 3. Add the context (when it happens)

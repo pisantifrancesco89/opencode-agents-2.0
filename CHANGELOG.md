@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.2.0 (2026-06-10)
+### Added
+- **Interactive setup wizard**: `setup.sh new ~/project` and `setup.sh existing ~/project` — asks structured questions, pre-fills memory
+- **One-liner installer**: `install.sh` — works via `curl | bash` or direct execution
+- **First Contact Protocol** in orchestrator: structured onboarding interview for new vs existing projects
+- **Auto-detection** of tech stack from project files (package.json, go.mod, etc.)
+- opencode.jsonc template for new projects (auto-configured with orchestrator as default)
+
+### Changed
+- **Complete rewrite of setup.sh**: now 350+ lines with interactive wizard, pre-fills all memory files
+- **Memory templates rewritten**: from empty brackets to guided templates with context-aware comments
+- **SKILL.md updated** to v3.2 with structured onboarding flow
+- **setup.sh now cleans up old agent files** during global install (removes old naming conventions)
+- **Framework templates** (nextjs.md, go.md, etc.) no longer copied to global agents dir — only per-project
+
+### Fixed
+- setup.sh copied all templates/agents/*.md to global dir including non-agent framework files
+- stack_suggestions.json had wrong agent names (payments→payment-specialist, etc.)
+- stack_suggestions.json had Italian text mixed with English
+- examples/habittracker-pro/README.md was in Italian with old agent names
+- Empty planner/ and generator/ directories (removed)
+
 ## 3.1.0 (2026-06-10)
 ### Added
 - Auto-delegation: orchestrator now automatically assigns tasks to specialist agents
