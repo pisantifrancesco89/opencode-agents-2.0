@@ -1,16 +1,36 @@
-# 🧙 Setup Wizard - Istruzioni per l'AI
+# Universal Setup Wizard
 
-Quando l'utente dice "voglio creare un nuovo progetto" o "setup wizard", segui questo processo ESATTO.
+## How to Use
 
-## FASE 1: Domande (una alla volta)
+This wizard works with **any coding tool**. When a user says "I want to create a new project" or "setup wizard", follow this process.
 
-Fai queste domande UNA ALLA VOLTA, aspettando la risposta dell'utente prima di passare alla successiva. Per ogni domanda, suggerisci anche le opzioni migliori.
+## Step 1: Detect if Existing Project
 
-### Domanda 1: Tipo di progetto
+Before asking questions, check if this is an **existing project**:
+
+```bash
+# Check for these files
+ls package.json requirements.txt go.mod Cargo.toml 2>/dev/null
+
+# If exists → EXISTING PROJECT
+# If not → NEW PROJECT
 ```
-Che tipo di progetto vuoi creare?
 
-1. Web Application (SaaS) ← più comune, consigliato
+### For Existing Projects
+Skip to Step 3 (Analyze Project) - the AI will analyze the codebase automatically.
+
+### For New Projects
+Continue with Step 2 (Ask Questions).
+
+## Step 2: Ask Questions (One at a Time)
+
+Ask these questions **ONE AT A TIME**, waiting for the answer before proceeding.
+
+### Question 1: Project Type
+```
+What type of project do you want to create?
+
+1. Web Application (SaaS) ← most common, recommended
 2. E-commerce
 3. Mobile App
 4. API Backend
@@ -22,31 +42,31 @@ Che tipo di progetto vuoi creare?
 10. CLI Tool
 ```
 
-### Domanda 2: Nome e descrizione
+### Question 2: Name and Description
 ```
-Come si chiama il progetto e cosa fa? (descrivi in 1-2 frasi)
-```
-
-### Domanda 3: Target utenti
-```
-Chi sono gli utenti target? (es: "freelance che vogliono gestire i clienti")
+What is the project name and what does it do? (describe in 1-2 sentences)
 ```
 
-### Domanda 4: Feature principali
+### Question 3: Target Users
 ```
-Quali sono le 5-8 feature essenziali per la MVP?
-
-Te ne suggerisco alcune in base al tipo di progetto:
-[suggerisci 10-15 feature rilevanti per il tipo scelto]
-
-Scegline 5-8 o scrivi le tue.
+Who are the target users? (e.g., "freelancers who want to manage clients")
 ```
 
-### Domanda 5: Preferenze tecniche
+### Question 4: Main Features
 ```
-Hai preferenze tecnologiche?
+What are the 5-8 essential features for the MVP?
 
-1. Suggerisci tu lo stack ottimale ← consigliato
+I'll suggest some based on the project type:
+[suggest 10-15 relevant features for the chosen type]
+
+Choose 5-8 or write your own.
+```
+
+### Question 5: Technical Preferences
+```
+Do you have technical preferences?
+
+1. Suggest optimal stack ← recommended
 2. JavaScript/TypeScript (Next.js, React, Node.js)
 3. Python (FastAPI, Django)
 4. Go
@@ -54,138 +74,190 @@ Hai preferenze tecnologiche?
 6. Java (Spring Boot)
 7. PHP (Laravel)
 8. Mobile (React Native, Flutter)
-9. Custom (specifica)
+9. Custom (specify)
 ```
 
-### Domanda 6: Budget
+### Question 6: Budget
 ```
-Qual è il tuo budget mensile per il deploy?
+What is your monthly budget for deployment?
 
-1. $0-50 (Free tier, hobby) ← per iniziare
-2. $50-100 (Startup, piccolo progetto) ← consigliato
-3. $100-300 (Business, medio progetto)
+1. $0-50 (Free tier, hobby) ← to start
+2. $50-100 (Startup, small project) ← recommended
+3. $100-300 (Business, medium project)
 4. $300-1000 (Enterprise)
 ```
 
-### Domanda 7: Timeline
+### Question 7: Timeline
 ```
-Quando vorresti lanciare la MVP?
+When do you want to launch the MVP?
 
-1. 2-4 settimane (MVP minimale)
-2. 1-2 mesi (MVP completa) ← consigliato
-3. 3-6 mesi (Prodotto completo)
-4. 6+ mesi (Enterprise)
+1. 2-4 weeks (minimal MVP)
+2. 1-2 months (complete MVP) ← recommended
+3. 3-6 months (complete product)
+4. 6+ months (enterprise)
 ```
 
-## FASE 2: Analisi e Suggerimenti
+### Question 8: Tool Choice
+```
+Which coding tool are you using?
 
-Dopo aver raccolto tutte le risposte:
+1. OpenCode ← recommended
+2. Claude Code
+3. Cursor
+4. Aider
+5. GitHub Copilot
+6. Other (specify)
+```
 
-1. **Determina lo stack ottimale** basandoti su:
-   - Tipo di progetto
-   - Feature richieste
-   - Preferenze utente
+## Step 3: Analyze Project
+
+### For New Projects
+After collecting answers:
+1. Determine optimal stack based on:
+   - Project type
+   - Requested features
+   - User preferences
    - Budget
+2. Determine agents needed:
+   - Core: planner, builder, reviewer, documenter
+   - Specialized: based on features
+3. Create summary
 
-2. **Determina gli agenti necessari**:
-   - Base: frontend, backend, database, qa-engineer, devops
-   - Specializzati: mobile (se mobile app), ai-engineer (se AI features), payments (se pagamenti)
+### For Existing Projects
+1. Read project files (package.json, config files, etc.)
+2. Detect stack and conventions
+3. Identify gaps and opportunities
+4. Plan improvements
 
-3. **Mostra un riepilogo**:
+## Step 4: Show Summary
+
 ```
-📊 Riepilogo Progetto
-━━━━━━━━━━━━━━━━━━━━
-Nome: [nome]
-Tipo: [tipo]
+Project Summary
+━━━━━━━━━━━━━━━
+Name: [name]
+Type: [type]
 Stack: [frontend] + [backend] + [database]
 Deploy: [deploy]
-Budget: $X/mese
-Timeline: X settimane
-Agenti: @frontend, @backend, @database, @qa-engineer, @devops
+Budget: $X/month
+Timeline: X weeks
+Tool: [tool]
+Agents: 5-20 (based on needs)
 
-Procedo con la generazione? (sì/no/modifica)
+Proceed with generation? (yes/no/modify)
 ```
 
-## FASE 3: Generazione File
+## Step 5: Generate Files
 
-Se l'utente conferma, genera TUTTI questi file nella directory del progetto:
+If user confirms, generate ALL these files:
 
-### 1. `.opencode/orchestrator.md`
-Contiene:
-- Nome progetto e descrizione
-- Stack tecnologico completo
-- Lista agenti disponibili
-- Regole di orchestrazione
-- Processo di lavoro
+### 1. `.memory/project.md`
+Contains:
+- Project name and description
+- Complete tech stack
+- Directory structure
+- Key files
+- Conventions
 
-### 2. `.opencode/agents/[nome].md` (uno per ogni agente)
-Ogni agente contiene:
-- Ruolo specifico per questo progetto
-- Stack tecnologico rilevante
-- Responsabilità nel contesto del progetto
-- Convenzioni specifiche
-- Pattern comuni per questo stack
-- Output atteso
+### 2. `.memory/errors.md`
+Contains:
+- Common errors for this stack
+- Framework-specific pitfalls
+- How to avoid them
 
-### 3. `CLAUDE.md`
-Contiene:
-- Panoramica progetto
-- Stack tecnologico
-- Feature MVP
-- Struttura directory
-- Comandi utili
-- Convenzioni
+### 3. `.memory/successes.md`
+Contains:
+- Patterns that work well
+- Best practices for this stack
+- What to follow
 
-### 4. `PLAN.md`
-Contiene:
-- Timeline e budget
-- Fasi di sviluppo (5 fasi)
-- Task dettagliati per ogni fase
-- Metriche di successo
-- Prossimi step
+### 4. `.memory/progress.md`
+Contains:
+- Milestone 1: Setup & Auth
+- Milestone 2: Core Features
+- Milestone 3: Advanced Features
+- Milestone 4: Polish & Launch
 
-### 5. `.env.example`
-Contiene:
-- Variabili per il database
-- Variabili auth
-- Variabili payments (se serve)
-- Variabili storage
-- Variabili app
+### 5. `.memory/decisions.md`
+Contains:
+- Architecture decisions
+- Technology choices
+- Design patterns
 
-### 6. `README.md`
-Contiene:
-- Descrizione progetto
+### 6. Tool-Specific Files
+
+Based on Step 2 Question 8:
+
+#### For OpenCode
+- `.opencode/orchestrator.md`
+- `.opencode/agents/*.md`
+- Copy `skills/opencode-agents/SKILL.md` to `~/.config/opencode/skills/`
+
+#### For Claude Code
+- `CLAUDE.md` with orchestrator instructions
+- `.memory/` directory
+
+#### For Cursor
+- `.cursorrules` with orchestrator instructions
+- `.cursor/agents/*.md`
+- `.memory/` directory
+
+#### For Aider
+- `.aider.conf.yml` with memory config
+- `.memory/` directory
+
+#### For GitHub Copilot
+- `.github/copilot-instructions.md`
+- `.memory/` directory
+
+#### For Other Tools
+- `.memory/` directory
+- `.agents/` directory
+- Instructions for manual setup
+
+### 7. `PLAN.md`
+Contains:
+- Timeline and budget
+- Development phases (4-5 phases)
+- Detailed tasks per phase
+- Success metrics
+- Next steps
+
+### 8. `README.md`
+Contains:
+- Project description
 - Quick start
 - Features
 - Tech stack
 - AI team info
 - Documentation links
 
-## FASE 4: Kickoff
+## Step 6: Kickoff
 
-Dopo la generazione:
+After generation:
 ```
-✅ Progetto generato con successo!
+Project generated successfully!
 
-File creati:
-  ✅ .opencode/orchestrator.md
-  ✅ .opencode/agents/[X agenti].md
-  ✅ CLAUDE.md
-  ✅ PLAN.md
-  ✅ .env.example
-  ✅ README.md
+Files created:
+  .memory/project.md
+  .memory/errors.md
+  .memory/successes.md
+  .memory/progress.md
+  .memory/decisions.md
+  [tool-specific files]
+  PLAN.md
+  README.md
 
-🎯 Per iniziare:
-  1. Leggi PLAN.md per la roadmap
-  2. Dimmi "Iniziamo con la Fase 1" per partire
-  3. Io chiamerò gli agenti necessari in parallelo
+To start:
+  1. Read PLAN.md for the roadmap
+  2. Say "Start with Phase 1" to begin
+  3. I will call the necessary agents in parallel
 ```
 
-## STACK DATABASE
+## Stack Database
 
-Usa questa tabella per determinare lo stack:
+Use this table to determine the stack:
 
-| Tipo Progetto | Frontend | Backend | Database | Deploy | Auth |
+| Project Type | Frontend | Backend | Database | Deploy | Auth |
 |--------------|----------|---------|----------|--------|------|
 | SaaS | Next.js 14 + TS | Next.js API + tRPC | PostgreSQL + Prisma | Vercel + Railway | NextAuth |
 | E-commerce | Next.js 14 + TS | Next.js API | PostgreSQL + Prisma | Vercel + Railway | NextAuth + Stripe |
@@ -196,13 +268,15 @@ Usa questa tabella per determinare lo stack:
 | Social | Next.js 14 + TS | Next.js + Socket.io | PostgreSQL + Redis | Vercel + Railway | NextAuth |
 | Dashboard | Next.js + Recharts | Next.js API | PostgreSQL + Prisma | Vercel + Railway | NextAuth |
 
-## REGOLE IMPORTANTI
+## Important Rules
 
-1. **UNA domanda alla volta** - Non fare mai più domande insieme
-2. **Suggerisci sempre** le opzioni migliori (marca con ← consigliato)
-3. **Adatta le feature** suggerite al tipo di progetto specifico
-4. **Mostra il riepilogo** prima di generare
-5. **Chiedi conferma** prima di creare i file
-6. **Genera TUTTI i file** in una volta
-7. **Usa il nome del progetto** ovunque (non "TestProject")
-8. **Sii specifico** negli agenti (non generici, ma tailored al progetto)
+1. **ONE question at a time** - Never ask multiple questions together
+2. **Always suggest** the best options (mark with ← recommended)
+3. **Adapt features** suggested to the specific project type
+4. **Show summary** before generating
+5. **Ask for confirmation** before creating files
+6. **Generate ALL files** at once
+7. **Use project name** everywhere (not "TestProject")
+8. **Be specific** in agents (not generic, but tailored to the project)
+9. **Detect existing projects** and adapt workflow
+10. **Ask about tool choice** to generate correct files

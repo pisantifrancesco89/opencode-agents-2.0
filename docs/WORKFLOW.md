@@ -1,8 +1,8 @@
-# Workflow Guide - OpenCode Agents 3.0
+# Workflow Guide - Universal AI Software House
 
 ## Overview
 
-This document describes the complete workflow of the AI Software House system, from initial request to final delivery.
+This document describes the complete workflow of the AI Software House system, from initial request to final delivery. This system works with **any coding tool**.
 
 ## The Complete Flow
 
@@ -11,12 +11,12 @@ User Request
     |
     v
 +-------------------+
-| 1. LOAD SKILL     |  <- SKILL.md loads orchestrator
+| 1. LOAD CONTEXT   |  <- Read tool-specific config (SKILL.md, CLAUDE.md, etc.)
 +-------------------+
     |
     v
 +-------------------+
-| 2. LOAD MEMORY    |  <- Read .opencode/memory/*.md
+| 2. LOAD MEMORY    |  <- Read .memory/*.md
 +-------------------+
     |
     v
@@ -59,13 +59,19 @@ User Request
 
 ### What Happens
 1. User makes a request
-2. SKILL.md is loaded automatically
+2. Tool-specific config is loaded:
+   - **OpenCode**: SKILL.md loads orchestrator
+   - **Claude Code**: CLAUDE.md contains instructions
+   - **Cursor**: .cursorrules loads rules
+   - **Aider**: .aider.conf.yml configures memory
+   - **Copilot**: copilot-instructions.md loads rules
+   - **Other**: Manual config
 3. Orchestrator agent is activated
 4. Memory files are read
 
 ### Memory Loading Sequence
 ```
-Check .opencode/memory/ exists?
+Check .memory/ exists?
   |
   +--> YES: Load all 5 memory files
   |         - project.md
@@ -193,7 +199,7 @@ Return team (5-20 agents)
 ```
 
 ### Agent File Format
-Each agent is created in `.opencode/agents/`:
+Each agent is created in `.agents/` (or tool-specific location):
 
 ```markdown
 # [Agent Name] Specialist
@@ -399,17 +405,17 @@ Say: "Continue with [next task]"
 ## Troubleshooting
 
 ### Orchestrator Not Loading
-- Check SKILL.md exists
-- Verify orchestrator.md exists
+- Check tool-specific config exists
+- Verify memory directory exists
 - Check permissions
 
 ### Memory Not Found
-- Create .opencode/memory/ directory
+- Create .memory/ directory
 - Create initial memory files
 - Run orchestrator to populate
 
 ### Agents Not Created
-- Check .opencode/agents/ directory
+- Check .agents/ directory
 - Verify orchestrator has permission
 - Check disk space
 

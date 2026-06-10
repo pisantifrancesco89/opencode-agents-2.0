@@ -54,7 +54,7 @@ You: Load orchestrator → Read progress memory → Resume work → Update memor
 
 ## Memory System
 
-The orchestrator uses a permanent memory system stored in `.opencode/memory/`:
+The orchestrator uses a permanent memory system stored in `.memory/` (or `.opencode/memory/` for OpenCode):
 
 - `project.md` - Project context (stack, structure, conventions)
 - `errors.md` - Mistakes to avoid

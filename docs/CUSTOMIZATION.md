@@ -1,8 +1,8 @@
-# Customization Guide - OpenCode Agents 3.0
+# Customization Guide - Universal AI Software House
 
 ## Overview
 
-OpenCode Agents 3.0 is fully customizable. You can modify agents, templates, memory, and workflows to fit your needs.
+This system is fully customizable. You can modify agents, templates, memory, and workflows to fit your needs. It works with **any coding tool**.
 
 ## Customization Levels
 
@@ -19,7 +19,7 @@ Customize agents for your company's standards.
 
 ### Modify Existing Agents
 
-Edit agent files in `.opencode/agents/`:
+Edit agent files in `.agents/` (or tool-specific location):
 
 ```markdown
 # backend-specialist.md
@@ -48,7 +48,7 @@ You are a backend specialist for our company.
 
 ### Create New Agents
 
-Create new agent files in `.opencode/agents/`:
+Create new agent files in `.agents/`:
 
 ```markdown
 # stripe-specialist.md
@@ -80,67 +80,11 @@ When complete, report:
 3. Test transactions successful
 ```
 
-## Customizing Templates
-
-### Modify Template Agents
-
-Edit templates in `templates/agents/`:
-
-```markdown
-# ui-specialist.md
-
-## Role
-You are a UI specialist following our design system.
-
-## Design System
-- Use our component library
-- Follow our color palette
-- Use our typography
-- Match our spacing
-
-## Conventions
-- Mobile-first approach
-- Accessibility WCAG 2.1 AA
-- Performance budget: 100KB
-- Support: Chrome, Firefox, Safari, Edge
-
-## Output
-When complete, report:
-1. Components created
-2. Accessibility score
-3. Performance metrics
-4. Browser compatibility
-```
-
-### Create New Templates
-
-Create new template files in `templates/agents/`:
-
-```markdown
-# my-template.md
-
-## Role
-[Description]
-
-## Stack
-- [Technologies]
-
-## Responsibilities
-- [Tasks]
-
-## Conventions
-- [Rules]
-
-## Output
-When complete, report:
-1. [What to report]
-```
-
 ## Customizing Memory
 
 ### Initial Memory Setup
 
-Create initial memory files in `.opencode/memory/`:
+Create initial memory files in `.memory/`:
 
 #### project.md
 ```markdown
@@ -388,6 +332,36 @@ Create deploy configuration:
 4. Document issue
 ```
 
+## Tool-Specific Customization
+
+### For OpenCode
+- Edit `.opencode/agents/*.md`
+- Use SKILL.md for global config
+- Memory in `.opencode/memory/`
+
+### For Claude Code
+- Edit CLAUDE.md
+- Memory in `.memory/`
+- Reference agents in CLAUDE.md
+
+### For Cursor
+- Edit `.cursorrules`
+- Edit `.cursor/agents/*.md`
+- Memory in `.memory/`
+
+### For Aider
+- Edit `.aider.conf.yml`
+- Memory in `.memory/`
+
+### For GitHub Copilot
+- Edit `.github/copilot-instructions.md`
+- Memory in `.memory/`
+
+### For Any Tool
+- Edit `.agents/*.md`
+- Memory in `.memory/`
+- Add instructions to your tool's config
+
 ## Best Practices
 
 ### 1. Start Simple
@@ -418,12 +392,12 @@ Create deploy configuration:
 ## Troubleshooting
 
 ### Agent Not Found
-- Check file exists in .opencode/agents/
+- Check file exists in .agents/
 - Verify file name matches reference
 - Check permissions
 
 ### Memory Not Loading
-- Verify .opencode/memory/ exists
+- Verify .memory/ exists
 - Check file permissions
 - Verify file format
 
