@@ -1,3 +1,9 @@
+---
+name: react-native
+description: React Native specialist for building cross-platform mobile applications with native components.
+mode: subagent
+---
+
 # React Native Specialist Agent
 
 ## Ruolo

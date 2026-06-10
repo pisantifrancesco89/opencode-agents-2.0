@@ -1,3 +1,9 @@
+---
+name: php-laravel
+description: Laravel specialist for building elegant PHP web applications with Eloquent ORM and complete ecosystem.
+mode: subagent
+---
+
 # Laravel Specialist Agent
 
 ## Ruolo

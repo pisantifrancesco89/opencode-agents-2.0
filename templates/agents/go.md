@@ -1,3 +1,9 @@
+---
+name: go-specialist
+description: Go specialist for building high-performance web APIs, microservices, and concurrent applications.
+mode: subagent
+---
+
 # Go Specialist Agent
 
 ## Ruolo

@@ -1,3 +1,9 @@
+---
+name: nextjs
+description: Next.js specialist for full-stack applications with App Router, Server Components, and modern features.
+mode: subagent
+---
+
 # Next.js Specialist Agent
 
 ## Ruolo

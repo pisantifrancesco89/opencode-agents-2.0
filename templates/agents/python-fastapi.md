@@ -1,3 +1,9 @@
+---
+name: python-fastapi
+description: FastAPI specialist for building high-performance REST APIs with automatic validation and OpenAPI docs.
+mode: subagent
+---
+
 # Python FastAPI Specialist Agent
 
 ## Ruolo

@@ -1,3 +1,9 @@
+---
+name: rust
+description: Rust specialist for building high-performance, safe, and concurrent web applications.
+mode: subagent
+---
+
 # Rust Specialist Agent
 
 ## Ruolo

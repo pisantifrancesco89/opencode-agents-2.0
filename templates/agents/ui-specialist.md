@@ -1,3 +1,9 @@
+---
+name: ui-specialist
+description: UI/UX specialist for creating beautiful, accessible, and responsive interfaces.
+mode: subagent
+---
+
 # UI Specialist Agent
 
 ## Role

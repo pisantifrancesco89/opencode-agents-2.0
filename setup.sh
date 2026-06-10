@@ -31,8 +31,23 @@ install_global() {
     cp "$REPO_DIR/skills/opencode-agents/SKILL.md" "$OPENCODE_SKILL_DIR/"
     
     echo -e "${GREEN}✅ Skill installed to: $OPENCODE_SKILL_DIR${NC}"
+    
+    # Install agents globally
+    echo -e "${YELLOW}Step 2: Installing agents globally...${NC}"
+    
+    OPENCODE_AGENTS_DIR="$HOME/.config/opencode/agents"
+    mkdir -p "$OPENCODE_AGENTS_DIR"
+    
+    # Copy core agents
+    cp "$REPO_DIR/agents/"*.md "$OPENCODE_AGENTS_DIR/"
+    echo -e "${GREEN}✅ Core agents installed${NC}"
+    
+    # Copy specialized agents
+    cp "$REPO_DIR/templates/agents/"*.md "$OPENCODE_AGENTS_DIR/"
+    echo -e "${GREEN}✅ Specialized agents installed${NC}"
+    
     echo ""
-    echo -e "${YELLOW}Step 2: Testing a project...${NC}"
+    echo -e "${YELLOW}Step 3: Testing a project...${NC}"
     echo ""
     echo "Now you can use the system in any project:"
     echo ""
@@ -78,8 +93,11 @@ setup_project() {
         echo "  .opencode/agents/ already exists, skipping..."
     else
         mkdir -p "$PROJECT_DIR/.opencode/agents"
+        # Copy core agents
         cp "$REPO_DIR/agents/"*.md "$PROJECT_DIR/.opencode/agents/"
-        echo -e "${GREEN}✅ Agents copied${NC}"
+        # Copy specialized agents
+        cp "$REPO_DIR/templates/agents/"*.md "$PROJECT_DIR/.opencode/agents/"
+        echo -e "${GREEN}✅ All agents copied (core + specialized)${NC}"
     fi
     
     # Copy CLAUDE.md for Claude Code users

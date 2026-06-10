@@ -1,3 +1,9 @@
+---
+name: python-django
+description: Django specialist for building full-stack Python web applications with admin panel and DRF.
+mode: subagent
+---
+
 # Django Specialist Agent
 
 ## Ruolo
