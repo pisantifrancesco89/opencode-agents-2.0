@@ -221,7 +221,13 @@ Report to user:
 
 ## Model Configuration
 
-You and all sub-agents can be configured with specific models and parameters via `opencode.jsonc`:
+You and all sub-agents can be configured with specific models and parameters via `opencode.jsonc`.
+
+### Current model setup
+
+This system is configured to use:
+- **`opencode/*`** — models from the OpenCode Go plan (gpt-5-codex, deepseek-v4-flash)
+- **`zenmux/*`** — free models from ZenMux (deepseek, gemini, qwen, glm)
 
 ### How it works
 1. **Global config** (`~/.config/opencode/opencode.jsonc`) — applies to ALL projects
@@ -231,41 +237,49 @@ You and all sub-agents can be configured with specific models and parameters via
 
 | Parameter | Effect | Recommended for Orchestrator |
 |-----------|--------|------------------------------|
-| `model` | Which AI model to use | `openai/gpt-4o` or `anthropic/claude-sonnet-4` |
+| `model` | Which AI model to use | `opencode/gpt-5-codex` (Go plan) or `zenmux/deepseek/deepseek-v3.2` (free) |
 | `temperature` | 0.0 (precise) → 1.0 (creative) | 0.3 (balanced) |
 | `top_p` | Nucleus sampling | 0.9 |
 
-### Recommended settings by agent type
+### Current model assignment per agent
 
-| Agent Type | Temperature | Why |
-|------------|-------------|-----|
-| Orchestrator | 0.3 | Balanced planning + coordination |
-| Planner | 0.4 | Creative architecture thinking |
-| Builder | 0.2 | Precise, safe code generation |
-| Reviewer | 0.1 | Very deterministic analysis |
-| Documenter | 0.3 | Clear, consistent writing |
-| Security/QA | 0.1 | Maximum precision |
-| UI/Frontend | 0.3 | Creative design decisions |
-| Other specialists | 0.2 | Focused domain work |
+| Agent | Model | Source | Temp |
+|-------|-------|--------|------|
+| **Orchestrator** | `opencode/gpt-5-codex` | Go plan | 0.3 |
+| **Planner** | `zenmux/deepseek/deepseek-v3.2` | Free | 0.4 |
+| **Builder** | `opencode/deepseek-v4-flash` | Go plan | 0.2 |
+| **Reviewer** | `zenmux/google/gemini-2.5-flash` | Free | 0.1 |
+| **Documenter** | `zenmux/qwen/qwen3.5-plus` | Free | 0.3 |
+| **Backend/Frontend** | `opencode/deepseek-v4-flash` | Go plan | 0.2 |
+| **Security/QA/Test** | `zenmux/google/gemini-2.5-flash` | Free | 0.1 |
+| **UI/Mobile** | `zenmux/qwen/qwen3.5-plus` | Free | 0.2-0.3 |
+| **Other specialists** | `zenmux/deepseek/deepseek-v4-flash` | Free | 0.2 |
 
 ### Sub-agent model behavior
 When you use the `task` tool to launch a sub-agent, OpenCode automatically uses that agent's configured model and temperature from `opencode.jsonc`. This means:
-- **Builder** runs with `temperature: 0.2` — safe, deterministic code
-- **Reviewer** runs with `temperature: 0.1` — precise bug detection
-- **Security** runs with `temperature: 0.1` — thorough analysis
-- **UI** runs with `temperature: 0.3` — creative design suggestions
+- **Orchestrator** uses `gpt-5-codex` — powerful reasoning for planning & coordination
+- **Builder** uses `deepseek-v4-flash` — fast, quality code generation
+- **Reviewer** uses `gemini-2.5-flash` — precise, deterministic analysis
+- **Security** uses `gemini-2.5-flash` — thorough, low-temperature analysis
+- **UI** uses `qwen3.5-plus` — creative design suggestions
 
-### Example: Customizing in your project
+### How to change a model
+Edit `~/.config/opencode/opencode.jsonc` and change the `model` field for any agent:
 ```jsonc
-// opencode.jsonc
 {
   "agent": {
-    "orchestrator": { "model": "openai/gpt-4o", "temperature": 0.3 },
-    "builder": { "model": "anthropic/claude-sonnet-4-20250514", "temperature": 0.2 },
-    "reviewer": { "model": "openai/gpt-4o", "temperature": 0.1 }
+    "builder": { "model": "opencode/deepseek-v4-flash", "temperature": 0.2 },
+    "reviewer": { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.1 }
   }
 }
 ```
+
+Available model prefixes:
+- `opencode/*` — OpenCode Go plan
+- `zenmux/*` — ZenMux free models
+- `anthropic/*` — Claude (requires API key)
+- `openai/*` — GPT (requires API key)
+- `freemodel/*` — Completely free models
 
 ## Token Efficiency
 

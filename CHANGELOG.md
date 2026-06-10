@@ -10,6 +10,8 @@
 - **Per-agent model configuration**: each agent can have its own model, temperature, and top_p
 - Global `~/.config/opencode/opencode.jsonc` with full per-agent config for ALL projects
 - Model Configuration section in orchestrator.md explaining how to customize models
+- **Dual provider setup**: `opencode/*` (Go plan) + `zenmux/*` (free models) per all agents
+- Orchestrator uses `gpt-5-codex`, Builder uses `deepseek-v4-flash`, Specialists use free zenmux models
 
 ### Changed
 - **Complete rewrite of setup.sh**: now 350+ lines with interactive wizard, pre-fills all memory files
