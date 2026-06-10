@@ -1,47 +1,49 @@
-# OpenCode Agents 3.0 - AI Software House
+# Universal AI Software House
 
-**AI-powered software house team with permanent memory and 20+ specialized agents.**
+**AI-powered software house team with permanent memory and 20+ specialized agents. Works with ANY coding tool.**
 
 Create a team of specialized AI agents for any project (new or existing) in minutes. The orchestrator analyzes your project, asks intelligent questions, generates a development plan, builds a specialized team, and executes tasks in parallel.
 
-## What's New in 3.0
+## What's Included
 
 - **Permanent Memory System** - Remembers project context across sessions (93% token savings)
 - **20 Specialized Agents** - From frontend to security, AI to payments
+- **6 Tool Adapters** - Works with OpenCode, Claude Code, Cursor, Aider, Copilot, and any other tool
 - **Existing Project Support** - Works on new AND existing codebases
 - **Intelligent Orchestration** - CEO that manages the entire lifecycle
 - **Parallel Execution** - Multiple agents work simultaneously
 
 ## Quick Start
 
-### No Installation Required
+### Step 1: Copy Memory to Your Project
 
-Just talk to the AI:
+```bash
+cp -r memory/ .memory/
+```
+
+### Step 2: Choose Your Tool
+
+| Tool | Adapter | Instructions |
+|------|---------|--------------|
+| **OpenCode** | [adapters/opencode.md](adapters/opencode.md) | Use SKILL.md |
+| **Claude Code** | [adapters/claude-code.md](adapters/claude-code.md) | Use CLAUDE.md |
+| **Cursor** | [adapters/cursor.md](adapters/cursor.md) | Use .cursorrules |
+| **Aider** | [adapters/aider.md](adapters/aider.md) | Use .aider.conf.yml |
+| **GitHub Copilot** | [adapters/copilot.md](adapters/copilot.md) | Use copilot-instructions.md |
+| **Any Tool** | [adapters/generic.md](adapters/generic.md) | Manual setup |
+
+### Step 3: Use
 
 ```
 You: "I want to create a SaaS for gym workouts"
-AI: [Loads orchestrator] -> Analyzes -> Plans -> Builds team -> Executes
-```
-
-### For Existing Projects
-
-```
-You: "Help me add payment feature to my project"
-AI: [Loads memory] -> Understands context -> Plans -> Executes
-```
-
-### Continue Previous Work
-
-```
-You: "Continue with the next phase"
-AI: [Loads progress] -> Resumes work -> Updates memory
+AI: [Loads memory] -> Analyzes -> Plans -> Builds team -> Executes
 ```
 
 ## How It Works
 
 ### 1. Memory System
 
-The orchestrator maintains permanent memory in `.opencode/memory/`:
+The orchestrator maintains permanent memory in `.memory/`:
 
 - `project.md` - Stack, structure, conventions
 - `errors.md` - Mistakes to avoid
@@ -80,6 +82,33 @@ The orchestrator maintains permanent memory in `.opencode/memory/`:
 6. Verify Quality -> Test and review
 7. Update Memory -> Save progress
 8. Deliver Results -> Report to user
+```
+
+## Supported Tools
+
+This system works with **any coding tool**. We provide adapters for:
+
+| Tool | Adapter File | How It Works |
+|------|--------------|--------------|
+| **OpenCode** | `adapters/opencode.md` | SKILL.md auto-loads orchestrator |
+| **Claude Code** | `adapters/claude-code.md` | CLAUDE.md contains instructions |
+| **Cursor** | `adapters/cursor.md` | .cursorrules loads rules |
+| **Aider** | `adapters/aider.md` | .aider.conf.yml configures memory |
+| **GitHub Copilot** | `adapters/copilot.md` | copilot-instructions.md loads rules |
+| **Other Tools** | `adapters/generic.md` | Manual setup instructions |
+
+### For Existing Projects
+
+The system works on **existing projects** too:
+
+1. Copy `.memory/` to your project
+2. The AI reads your codebase and fills memory automatically
+3. It understands your stack, conventions, and patterns
+4. It plans improvements and executes them
+
+```
+You: "Help me add payment feature to my existing app"
+AI: [Reads your code] -> [Fills memory] -> [Plans] -> [Executes]
 ```
 
 ## Supported Stacks
@@ -138,28 +167,61 @@ AI creates:
 You: "Add payment feature to my app"
 
 AI:
-- Loads existing memory
-- Identifies current stack
+- Reads your existing codebase
+- Identifies current stack (e.g., Next.js + Prisma)
 - Creates payment-specialist
 - Implements Stripe integration
-- Updates memory
+- Updates memory with new decisions
+```
+
+### Example 3: Continue Previous Work
+
+```
+You: "Continue with the next phase"
+
+AI:
+- Reads .memory/progress.md
+- Knows exactly where you left off
+- Resumes work from last task
+- Updates memory with new progress
 ```
 
 ## Project Structure
 
+### For OpenCode
 ```
 your-project/
 ├── .opencode/
 │   ├── agents/          # Project-specific agents
-│   │   ├── workout-specialist.md
-│   │   └── payment-specialist.md
 │   └── memory/          # Permanent memory
-│       ├── project.md
-│       ├── errors.md
-│       ├── successes.md
-│       ├── progress.md
-│       └── decisions.md
-└── PLAN.md              # Development roadmap
+├── .memory/             # Universal memory (symlink or copy)
+└── PLAN.md
+```
+
+### For Claude Code
+```
+your-project/
+├── .memory/             # Permanent memory
+├── CLAUDE.md            # Instructions with memory loading
+└── PLAN.md
+```
+
+### For Cursor
+```
+your-project/
+├── .memory/             # Permanent memory
+├── .cursor/
+│   └── agents/          # Project-specific agents
+├── .cursorrules         # Instructions
+└── PLAN.md
+```
+
+### For Any Tool
+```
+your-project/
+├── .memory/             # Permanent memory
+├── .agents/             # Project-specific agents
+└── PLAN.md
 ```
 
 ## Token Efficiency
@@ -179,12 +241,13 @@ your-project/
 - [ADVANCED.md](ADVANCED.md) - Advanced usage
 - [docs/WORKFLOW.md](docs/WORKFLOW.md) - Detailed workflow
 - [docs/CUSTOMIZATION.md](docs/CUSTOMIZATION.md) - Customization guide
+- [adapters/](adapters/) - Tool-specific adapters
 
 ## Contributing
 
 1. Fork the repo
 2. Create feature branch
-3. Add new agent templates
+3. Add new agent templates or adapters
 4. Test with real projects
 5. Submit PR
 

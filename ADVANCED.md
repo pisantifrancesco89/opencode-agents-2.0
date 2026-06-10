@@ -1,13 +1,39 @@
-# Advanced Guide - OpenCode Agents 3.0
+# Advanced Guide - Universal AI Software House
+
+## Universal Compatibility
+
+This system works with **any coding tool**. The memory and agent system is universal - only the loading mechanism changes per tool.
+
+### Supported Tools
+
+| Tool | How Memory Loads | How Agents Load |
+|------|------------------|-----------------|
+| **OpenCode** | `.opencode/memory/` via SKILL.md | `.opencode/agents/` |
+| **Claude Code** | `.memory/` via CLAUDE.md | Referenced in CLAUDE.md |
+| **Cursor** | `.memory/` via .cursorrules | `.cursor/agents/` |
+| **Aider** | `.memory/` via .aider.conf.yml | Manual |
+| **GitHub Copilot** | `.memory/` via copilot-instructions.md | Manual |
+| **Any Tool** | `.memory/` via manual config | `.agents/` |
+
+### Adapter Files
+
+Each adapter explains how to integrate with a specific tool:
+
+- `adapters/opencode.md` - OpenCode integration
+- `adapters/claude-code.md` - Claude Code integration
+- `adapters/cursor.md` - Cursor integration
+- `adapters/aider.md` - Aider integration
+- `adapters/copilot.md` - GitHub Copilot integration
+- `adapters/generic.md` - Any tool integration
 
 ## Memory System
 
-The memory system is the core innovation of v3.0. It stores project context permanently, reducing token consumption by ~93%.
+The memory system is the core innovation. It stores project context permanently, reducing token consumption by ~93%.
 
 ### Memory Structure
 
 ```
-.opencode/memory/
+.memory/
 ├── project.md      # Stack, structure, conventions
 ├── errors.md       # Mistakes to avoid
 ├── successes.md    # What works well
@@ -18,7 +44,7 @@ The memory system is the core innovation of v3.0. It stores project context perm
 ### How Memory Works
 
 #### Session Start
-1. Orchestrator checks if `.opencode/memory/` exists
+1. AI checks if `.memory/` exists
 2. If exists, loads all memory files
 3. If not exists, creates memory structure and analyzes project
 
@@ -29,7 +55,7 @@ The memory system is the core innovation of v3.0. It stores project context perm
 4. Orchestrator updates `progress.md` after each task
 
 #### Session End
-1. Orchestrator updates all memory files
+1. AI updates all memory files
 2. Saves progress, decisions, errors, successes
 3. Next session starts with full context
 
@@ -129,6 +155,37 @@ Stores architecture decisions:
 - Result: Works with PostgreSQL
 ```
 
+## Working with Existing Projects
+
+### Step 1: Copy Memory
+
+```bash
+cp -r .memory/ /path/to/your/project/.memory/
+```
+
+### Step 2: Let AI Analyze
+
+The AI will:
+1. Read your codebase (package.json, config files, etc.)
+2. Fill `project.md` with your stack and structure
+3. Identify conventions and patterns
+4. Create initial memory
+
+### Step 3: Start Working
+
+```
+You: "Help me add payment feature"
+AI: [Reads your code] -> [Fills memory] -> [Plans] -> [Executes]
+```
+
+### Step 4: Memory Updates Automatically
+
+After each session:
+- Progress is saved
+- New errors are recorded
+- Successful patterns are noted
+- Decisions are documented
+
 ## Agent System
 
 ### Core Team (always present)
@@ -195,11 +252,11 @@ Manage multiple projects simultaneously:
 ```bash
 # Project 1: SaaS
 cd ~/projects/saas-app
-# Orchestrator loads project-specific memory
+# AI loads project-specific memory
 
 # Project 2: Mobile
 cd ~/projects/mobile-app
-# Orchestrator loads different memory
+# AI loads different memory
 ```
 
 ### Custom Agent Templates
@@ -233,7 +290,7 @@ Share memory across team members:
 
 ```bash
 # Commit memory to git
-git add .opencode/memory/
+git add .memory/
 git commit -m "chore: update project memory"
 
 # Team members pull memory
@@ -342,10 +399,10 @@ Always review before merging:
 
 ### Memory Not Loading
 
-Check if `.opencode/memory/` exists:
+Check if `.memory/` exists:
 
 ```bash
-ls -la .opencode/memory/
+ls -la .memory/
 # Should show 5 .md files
 ```
 
@@ -354,7 +411,7 @@ ls -la .opencode/memory/
 Verify agent file exists:
 
 ```bash
-ls -la .opencode/agents/
+ls -la .agents/
 # Should show project-specific agents
 ```
 
@@ -372,7 +429,7 @@ Check if memory is being used:
 Check memory for known errors:
 
 ```bash
-cat .opencode/memory/errors.md
+cat .memory/errors.md
 # Look for similar errors and fixes
 ```
 
@@ -393,13 +450,13 @@ cp -r .opencode .opencode.backup
 
 ### Step 2: Create Memory
 ```bash
-mkdir -p .opencode/memory
+mkdir -p .memory
 # Create initial memory files
 ```
 
 ### Step 3: Analyze Project
 ```bash
-# Orchestrator analyzes existing codebase
+# AI analyzes existing codebase
 # Generates memory from current state
 ```
 
