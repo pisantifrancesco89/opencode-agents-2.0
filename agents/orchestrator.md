@@ -228,14 +228,14 @@ La strategia: **modelli premium SOLO dove la qualità è critica**, free models 
 ```
 GO PLAN (consuma crediti, qualità massima):
   Solo per agenti che PRODUCONO output finale:
-  → orchestrator (decisioni architetturali)
   → builder (codice di produzione)
   → backend/frontend (API, UI)
   → database (query, schemi)
   → security (sicurezza)
 
 ZENMUX FREE (gratuito, buona qualità):
-  Per agenti di ANALISI e SUPPORTO:
+  Per agenti di ANALISI, SUPPORTO e PIANIFICAZIONE:
+  → orchestrator (CEO - decisioni architetturali)
   → planner, reviewer, documenter
   → devops, QA, testing
   → UI, mobile, integration, payment, etc.
@@ -248,7 +248,7 @@ ZENMUX FREE (gratuito, buona qualità):
 
 | Agent | Modello | Fonte | Temp | Perché |
 |-------|---------|-------|------|--------|
-| **Orchestrator** 🧠 | `opencode/gpt-5-codex` | **Go plan** | 0.3 | Decisioni architetturali critiche |
+| **Orchestrator** 🧠 | `zenmux/qwen/qwen3.7-plus` | **Free** 🆓 | 0.3 | Decisioni architetturali (gratuito!) |
 | **Builder** 🔧 | `opencode/deepseek-v4-flash` | **Go plan** | 0.2 | Codice di produzione |
 | **Backend** 🔌 | `opencode/deepseek-v4-flash` | **Go plan** | 0.2 | API, logica di business |
 | **Frontend** 🎨 | `opencode/deepseek-v4-flash` | **Go plan** | 0.2 | UI di produzione |
@@ -266,10 +266,11 @@ ZENMUX FREE (gratuito, buona qualità):
 
 | Componente | Token | Costo |
 |------------|-------|-------|
-| Orchestrator (Go plan) | ~2K | ~$0.01 |
 | Builder (Go plan) | ~8K | ~$0.04 |
 | Backend/Frontend/DB (Go plan) | ~6K | ~$0.03 |
+| Security (Go plan) | ~2K | ~$0.01 |
 | **Subtotale Go plan** | **~16K** | **~$0.08** |
+| Orchestrator (free 🆓) | ~2K | $0.00 |
 | Reviewer (free) | ~3K | $0.00 |
 | Planner (free) | ~1K | $0.00 |
 | Documenter (free) | ~1K | $0.00 |
@@ -295,7 +296,7 @@ ZENMUX FREE (gratuito, buona qualità):
 ```
 
 ### Model reference
-- `opencode/gpt-5-codex` — Go plan, massima qualità
+- `zenmux/qwen/qwen3.7-plus` — Free, eccellente per orchestrator
 - `opencode/deepseek-v4-flash` — Go plan, veloce e capace
 - `zenmux/deepseek/deepseek-v3.2` — Free, buon ragionamento
 - `zenmux/deepseek/deepseek-v4-flash` — Free, veloce

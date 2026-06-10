@@ -729,7 +729,6 @@ create_tool_configs() {
   // ── Per-Agent Configuration ──
   "agent": {
     // ── GO PLAN (task critiche) ──
-    "orchestrator":       { "model": "opencode/gpt-5-codex",            "temperature": 0.3 },
     "builder":            { "model": "opencode/deepseek-v4-flash",      "temperature": 0.2 },
     "backend-specialist": { "model": "opencode/deepseek-v4-flash",      "temperature": 0.2 },
     "frontend-specialist":{ "model": "opencode/deepseek-v4-flash",      "temperature": 0.2 },
@@ -737,6 +736,7 @@ create_tool_configs() {
     "security-specialist":{ "model": "opencode/deepseek-v4-flash",      "temperature": 0.1 },
 
     // ── ZENMUX FREE (supporto) ──
+    "orchestrator":       { "model": "zenmux/qwen/qwen3.7-plus",       "temperature": 0.3 },
     "planner":            { "model": "zenmux/deepseek/deepseek-v3.2",  "temperature": 0.3 },
     "reviewer":           { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.1 },
     "documenter":         { "model": "zenmux/qwen/qwen3.5-plus",       "temperature": 0.2 },
