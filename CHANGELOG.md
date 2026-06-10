@@ -7,6 +7,9 @@
 - **First Contact Protocol** in orchestrator: structured onboarding interview for new vs existing projects
 - **Auto-detection** of tech stack from project files (package.json, go.mod, etc.)
 - opencode.jsonc template for new projects (auto-configured with orchestrator as default)
+- **Per-agent model configuration**: each agent can have its own model, temperature, and top_p
+- Global `~/.config/opencode/opencode.jsonc` with full per-agent config for ALL projects
+- Model Configuration section in orchestrator.md explaining how to customize models
 
 ### Changed
 - **Complete rewrite of setup.sh**: now 350+ lines with interactive wizard, pre-fills all memory files

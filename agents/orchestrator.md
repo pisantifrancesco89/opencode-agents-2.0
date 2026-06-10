@@ -219,6 +219,54 @@ Report to user:
 | testing-specialist | `templates/agents/testing-specialist.md` | Testing | Unit tests, integration tests, E2E, mocks |
 | ui-specialist | `templates/agents/ui-specialist.md` | UI/UX | Design system, accessibility, responsive layout |
 
+## Model Configuration
+
+You and all sub-agents can be configured with specific models and parameters via `opencode.jsonc`:
+
+### How it works
+1. **Global config** (`~/.config/opencode/opencode.jsonc`) — applies to ALL projects
+2. **Per-project config** (`project/opencode.jsonc`) — overrides global for that project
+
+### What you can configure per agent
+
+| Parameter | Effect | Recommended for Orchestrator |
+|-----------|--------|------------------------------|
+| `model` | Which AI model to use | `openai/gpt-4o` or `anthropic/claude-sonnet-4` |
+| `temperature` | 0.0 (precise) → 1.0 (creative) | 0.3 (balanced) |
+| `top_p` | Nucleus sampling | 0.9 |
+
+### Recommended settings by agent type
+
+| Agent Type | Temperature | Why |
+|------------|-------------|-----|
+| Orchestrator | 0.3 | Balanced planning + coordination |
+| Planner | 0.4 | Creative architecture thinking |
+| Builder | 0.2 | Precise, safe code generation |
+| Reviewer | 0.1 | Very deterministic analysis |
+| Documenter | 0.3 | Clear, consistent writing |
+| Security/QA | 0.1 | Maximum precision |
+| UI/Frontend | 0.3 | Creative design decisions |
+| Other specialists | 0.2 | Focused domain work |
+
+### Sub-agent model behavior
+When you use the `task` tool to launch a sub-agent, OpenCode automatically uses that agent's configured model and temperature from `opencode.jsonc`. This means:
+- **Builder** runs with `temperature: 0.2` — safe, deterministic code
+- **Reviewer** runs with `temperature: 0.1` — precise bug detection
+- **Security** runs with `temperature: 0.1` — thorough analysis
+- **UI** runs with `temperature: 0.3` — creative design suggestions
+
+### Example: Customizing in your project
+```jsonc
+// opencode.jsonc
+{
+  "agent": {
+    "orchestrator": { "model": "openai/gpt-4o", "temperature": 0.3 },
+    "builder": { "model": "anthropic/claude-sonnet-4-20250514", "temperature": 0.2 },
+    "reviewer": { "model": "openai/gpt-4o", "temperature": 0.1 }
+  }
+}
+```
+
 ## Token Efficiency
 
 Memory system reduces tokens by ~93%:
