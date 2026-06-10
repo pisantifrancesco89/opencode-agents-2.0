@@ -219,67 +219,58 @@ Report to user:
 | testing-specialist | `templates/agents/testing-specialist.md` | Testing | Unit tests, integration tests, E2E, mocks |
 | ui-specialist | `templates/agents/ui-specialist.md` | UI/UX | Design system, accessibility, responsive layout |
 
-## Model Configuration
+## Model Configuration — ⚡ 100% Free & Optimized
 
-You and all sub-agents can be configured with specific models and parameters via `opencode.jsonc`.
+All agents use **exclusively free models** with **low temperatures** for minimum token consumption.
 
-### Current model setup
+### Current model setup (free only)
 
-This system is configured to use:
-- **`opencode/*`** — models from the OpenCode Go plan (gpt-5-codex, deepseek-v4-flash)
-- **`zenmux/*`** — free models from ZenMux (deepseek, gemini, qwen, glm)
+| Agent | Model | Why | Temp |
+|-------|-------|-----|------|
+| **Orchestrator** 🧠 | `zenmux/deepseek/deepseek-v3.2` | Reasoning | **0.2** |
+| **Planner** 📋 | `zenmux/deepseek/deepseek-v3.2` | Reasoning | **0.3** |
+| **Builder** 🔧 | `zenmux/deepseek/deepseek-v4-flash` | Fast code | **0.1** |
+| **Reviewer** 👁️ | `zenmux/google/gemini-2.5-flash` | Analysis | **0.1** |
+| **Documenter** 📝 | `zenmux/qwen/qwen3.5-plus` | Writing | **0.2** |
+| **Code specialists** | `zenmux/deepseek/deepseek-v4-flash` | Fast code | **0.1** |
+| **Analysis specialists** | `zenmux/google/gemini-2.5-flash` | Analysis | **0.1** |
+| **UI/UX** 🎨 | `zenmux/qwen/qwen3.5-plus` | Creative | **0.2** |
+
+### Why so cheap?
+
+1. **All models are free** — ZenMux providers, no API keys needed
+2. **Low temperatures (0.1-0.3)** — deterministic output = fewer retries = fewer tokens
+3. **Flash/lite models** — faster inference = less compute
+4. **Right model for the job** — no waste (v3.2 only for reasoning, v4-flash for code)
+
+### Cost comparison
+
+| Setup | Cost per session (est.) |
+|-------|------------------------|
+| GPT-4o for all agents | ~$0.50-2.00 |
+| Claude for all agents | ~$0.30-1.50 |
+| **This setup (100% free)** | **$0.00** |
 
 ### How it works
 1. **Global config** (`~/.config/opencode/opencode.jsonc`) — applies to ALL projects
 2. **Per-project config** (`project/opencode.jsonc`) — overrides global for that project
 
-### What you can configure per agent
-
-| Parameter | Effect | Recommended for Orchestrator |
-|-----------|--------|------------------------------|
-| `model` | Which AI model to use | `opencode/gpt-5-codex` (Go plan) or `zenmux/deepseek/deepseek-v3.2` (free) |
-| `temperature` | 0.0 (precise) → 1.0 (creative) | 0.3 (balanced) |
-| `top_p` | Nucleus sampling | 0.9 |
-
-### Current model assignment per agent
-
-| Agent | Model | Source | Temp |
-|-------|-------|--------|------|
-| **Orchestrator** | `opencode/gpt-5-codex` | Go plan | 0.3 |
-| **Planner** | `zenmux/deepseek/deepseek-v3.2` | Free | 0.4 |
-| **Builder** | `opencode/deepseek-v4-flash` | Go plan | 0.2 |
-| **Reviewer** | `zenmux/google/gemini-2.5-flash` | Free | 0.1 |
-| **Documenter** | `zenmux/qwen/qwen3.5-plus` | Free | 0.3 |
-| **Backend/Frontend** | `opencode/deepseek-v4-flash` | Go plan | 0.2 |
-| **Security/QA/Test** | `zenmux/google/gemini-2.5-flash` | Free | 0.1 |
-| **UI/Mobile** | `zenmux/qwen/qwen3.5-plus` | Free | 0.2-0.3 |
-| **Other specialists** | `zenmux/deepseek/deepseek-v4-flash` | Free | 0.2 |
-
-### Sub-agent model behavior
-When you use the `task` tool to launch a sub-agent, OpenCode automatically uses that agent's configured model and temperature from `opencode.jsonc`. This means:
-- **Orchestrator** uses `gpt-5-codex` — powerful reasoning for planning & coordination
-- **Builder** uses `deepseek-v4-flash` — fast, quality code generation
-- **Reviewer** uses `gemini-2.5-flash` — precise, deterministic analysis
-- **Security** uses `gemini-2.5-flash` — thorough, low-temperature analysis
-- **UI** uses `qwen3.5-plus` — creative design suggestions
-
 ### How to change a model
-Edit `~/.config/opencode/opencode.jsonc` and change the `model` field for any agent:
 ```jsonc
+// Edit ~/.config/opencode/opencode.jsonc
 {
   "agent": {
-    "builder": { "model": "opencode/deepseek-v4-flash", "temperature": 0.2 },
-    "reviewer": { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.1 }
+    "builder": { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 }
   }
 }
 ```
 
-Available model prefixes:
-- `opencode/*` — OpenCode Go plan
-- `zenmux/*` — ZenMux free models
-- `anthropic/*` — Claude (requires API key)
-- `openai/*` — GPT (requires API key)
-- `freemodel/*` — Completely free models
+### Available free models
+- `zenmux/deepseek/deepseek-v4-flash` — fast, good code
+- `zenmux/deepseek/deepseek-v3.2` — strong reasoning
+- `zenmux/google/gemini-2.5-flash` — analysis
+- `zenmux/qwen/qwen3.5-plus` — creative writing
+- `zenmux/z-ai/glm-4.7-flash-free` — ultra-lightweight
 
 ## Token Efficiency
 
