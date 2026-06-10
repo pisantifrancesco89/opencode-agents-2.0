@@ -40,11 +40,13 @@ install_global() {
     
     # Copy core agents
     cp "$REPO_DIR/agents/"*.md "$OPENCODE_AGENTS_DIR/"
-    echo -e "${GREEN}✅ Core agents installed${NC}"
+    echo -e "${GREEN}✅ Core agents installed (5)${NC}"
     
-    # Copy specialized agents
-    cp "$REPO_DIR/templates/agents/"*.md "$OPENCODE_AGENTS_DIR/"
-    echo -e "${GREEN}✅ Specialized agents installed${NC}"
+    # Copy specialist agents (only actual sub-agents, not framework templates)
+    cp "$REPO_DIR/templates/agents/"*-specialist.md "$OPENCODE_AGENTS_DIR/"
+    cp "$REPO_DIR/templates/agents/ai-engineer.md" "$OPENCODE_AGENTS_DIR/"
+    cp "$REPO_DIR/templates/agents/qa-engineer.md" "$OPENCODE_AGENTS_DIR/"
+    echo -e "${GREEN}✅ Specialist agents installed (16)${NC}"
     
     echo ""
     echo -e "${YELLOW}Step 3: Testing a project...${NC}"
@@ -146,8 +148,34 @@ EOF
         echo -e "${GREEN}✅ .cursorrules created${NC}"
     fi
     
+    # Create opencode.jsonc (for OpenCode users)
+    echo -e "${YELLOW}Step 5: Creating opencode.jsonc...${NC}"
+    if [ -f "$PROJECT_DIR/opencode.jsonc" ] || [ -f "$PROJECT_DIR/opencode.json" ]; then
+        echo "  opencode.jsonc already exists, skipping..."
+    else
+        cat > "$PROJECT_DIR/opencode.jsonc" << 'OPEO'
+{
+  "default_agent": "orchestrator",
+  "auto_apply": false,
+  "skills": [
+    "opencode-agents"
+  ],
+  "rules": [
+    "Read .memory/project.md for project context before starting work",
+    "Read .memory/errors.md to avoid known mistakes",
+    "Read .memory/successes.md for patterns that work",
+    "Read .memory/progress.md for current status",
+    "Read .memory/decisions.md for architecture decisions",
+    "After completing work, update all .memory/ files",
+    "Use the orchestrator agent as the primary interface"
+  ]
+}
+OPEO
+        echo -e "${GREEN}✅ opencode.jsonc created${NC}"
+    fi
+
     # Create PLAN.md
-    echo -e "${YELLOW}Step 5: Creating PLAN.md...${NC}"
+    echo -e "${YELLOW}Step 6: Creating PLAN.md...${NC}"
     if [ -f "$PROJECT_DIR/PLAN.md" ]; then
         echo "  PLAN.md already exists, skipping..."
     else
@@ -175,15 +203,16 @@ EOF
     echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
     echo "Files created:"
-    echo "  .memory/project.md      - Project context"
-    echo "  .memory/errors.md       - Errors to avoid"
-    echo "  .memory/successes.md    - What works well"
-    echo "  .memory/progress.md     - Current status"
-    echo "  .memory/decisions.md    - Architecture decisions"
-    echo "  .opencode/agents/       - AI agents"
-    echo "  CLAUDE.md               - Claude Code instructions"
-    echo "  .cursorrules            - Cursor instructions"
-    echo "  PLAN.md                 - Development roadmap"
+    echo "  .memory/project.md        - Project context"
+    echo "  .memory/errors.md         - Errors to avoid"
+    echo "  .memory/successes.md      - What works well"
+    echo "  .memory/progress.md       - Current status"
+    echo "  .memory/decisions.md      - Architecture decisions"
+    echo "  .opencode/agents/         - AI agents"
+    echo "  opencode.jsonc            - OpenCode configuration"
+    echo "  CLAUDE.md                 - Claude Code instructions"
+    echo "  .cursorrules              - Cursor instructions"
+    echo "  PLAN.md                   - Development roadmap"
     echo ""
     echo "Next steps:"
     echo "  1. Open the project in your AI tool"

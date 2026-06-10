@@ -8,8 +8,8 @@
         "deploy": "Vercel + Railway",
         "auth": "NextAuth.js",
         "payments": "Stripe",
-        "estimated_cost": "$50-100/mese",
-        "estimated_time": "4-6 settimane"
+        "estimated_cost": "$50-100/month",
+        "estimated_time": "4-6 weeks"
       },
       "alternatives": [
         {
@@ -38,8 +38,8 @@
         "payments": "Stripe",
         "email": "Resend",
         "storage": "Uploadthing",
-        "estimated_cost": "$100-200/mese",
-        "estimated_time": "6-8 settimane"
+        "estimated_cost": "$100-200/month",
+        "estimated_time": "6-8 weeks"
       }
     },
     "Mobile App": {
@@ -50,8 +50,8 @@
         "deploy": "Railway + Expo",
         "auth": "Expo Auth + NextAuth",
         "payments": "RevenueCat",
-        "estimated_cost": "$50-150/mese",
-        "estimated_time": "8-12 settimane"
+        "estimated_cost": "$50-150/month",
+        "estimated_time": "8-12 weeks"
       }
     },
     "API Backend": {
@@ -62,8 +62,8 @@
         "deploy": "Railway",
         "auth": "JWT + OAuth2",
         "docs": "Swagger + ReDoc",
-        "estimated_cost": "$30-80/mese",
-        "estimated_time": "3-5 settimane"
+        "estimated_cost": "$30-80/month",
+        "estimated_time": "3-5 weeks"
       }
     },
     "AI/ML Application": {
@@ -74,8 +74,8 @@
         "deploy": "Railway + Modal",
         "auth": "NextAuth.js",
         "ai": "OpenAI API + LangChain",
-        "estimated_cost": "$200-500/mese",
-        "estimated_time": "6-10 settimane"
+        "estimated_cost": "$200-500/month",
+        "estimated_time": "6-10 weeks"
       }
     },
     "Marketplace": {
@@ -87,8 +87,8 @@
         "auth": "NextAuth.js",
         "payments": "Stripe Connect",
         "chat": "Socket.io",
-        "estimated_cost": "$150-300/mese",
-        "estimated_time": "10-14 settimane"
+        "estimated_cost": "$150-300/month",
+        "estimated_time": "10-14 weeks"
       }
     },
     "Social Network": {
@@ -100,8 +100,8 @@
         "auth": "NextAuth.js",
         "realtime": "Socket.io",
         "storage": "Cloudinary",
-        "estimated_cost": "$100-250/mese",
-        "estimated_time": "8-12 settimane"
+        "estimated_cost": "$100-250/month",
+        "estimated_time": "8-12 weeks"
       }
     },
     "Dashboard/Analytics": {
@@ -112,20 +112,25 @@
         "deploy": "Vercel + Railway",
         "auth": "NextAuth.js",
         "charts": "Recharts + Tremor",
-        "estimated_cost": "$50-150/mese",
-        "estimated_time": "4-8 settimane"
+        "estimated_cost": "$50-150/month",
+        "estimated_time": "4-8 weeks"
       }
     }
   },
   "agents": {
-    "base": ["frontend", "backend", "database", "qa-engineer", "devops"],
+    "base": ["frontend-specialist", "backend-specialist", "database-specialist", "qa-engineer", "devops-specialist"],
     "specialized": {
-      "mobile": ["mobile"],
+      "mobile": ["mobile-specialist"],
       "ai": ["ai-engineer"],
-      "payments": ["payments"],
-      "realtime": ["websocket"],
-      "security": ["security"],
-      "blockchain": ["web3"]
+      "payments": ["payment-specialist"],
+      "realtime": ["realtime-specialist"],
+      "security": ["security-specialist"],
+      "testing": ["testing-specialist"],
+      "performance": ["performance-specialist"],
+      "integration": ["integration-specialist"],
+      "auth": ["auth-specialist"],
+      "data": ["data-specialist"],
+      "ui": ["ui-specialist"]
     }
   },
   "costs": {
@@ -133,20 +138,20 @@
       "frontend": "Vercel (free)",
       "backend": "Railway ($5 trial credit)",
       "database": "Supabase (free tier)",
-      "total": "$0-20/mese"
+      "total": "$0-20/month"
     },
     "startup": {
       "frontend": "Vercel Pro ($20)",
       "backend": "Railway ($20-50)",
       "database": "Railway Postgres ($10-20)",
-      "total": "$50-100/mese"
+      "total": "$50-100/month"
     },
     "business": {
       "frontend": "Vercel Pro ($20)",
       "backend": "Railway ($50-100)",
       "database": "Railway Postgres ($20-50)",
       "cache": "Redis ($10-20)",
-      "total": "$100-300/mese"
+      "total": "$100-300/month"
     },
     "enterprise": {
       "frontend": "Vercel Enterprise ($150+)",
@@ -154,28 +159,28 @@
       "database": "Managed Postgres ($100+)",
       "cache": "Redis Cluster ($50+)",
       "cdn": "Cloudflare ($50+)",
-      "total": "$500+/mese"
+      "total": "$500+/month"
     }
   },
   "timelines": {
     "minimal_mvp": {
-      "features": 3-5,
-      "duration": "2-4 settimane",
+      "features": "3-5",
+      "duration": "2-4 weeks",
       "team": "1 developer"
     },
     "standard_mvp": {
-      "features": 5-10,
-      "duration": "1-2 mesi",
+      "features": "5-10",
+      "duration": "1-2 months",
       "team": "1-2 developers"
     },
     "complete_product": {
-      "features": 10-20,
-      "duration": "3-6 mesi",
+      "features": "10-20",
+      "duration": "3-6 months",
       "team": "2-4 developers"
     },
     "enterprise": {
-      "features": 20+,
-      "duration": "6-12 mesi",
+      "features": "20+",
+      "duration": "6-12 months",
       "team": "4+ developers"
     }
   }

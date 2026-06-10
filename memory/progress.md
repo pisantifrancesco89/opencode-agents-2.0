@@ -13,6 +13,13 @@
 - [x] Updated setup.sh to install all agents globally
 - [x] Created CHANGELOG.md
 - [x] Removed duplicate stub agent files
+- [x] Fixed stack_suggestions.json (agent names + translated Italian→English)
+- [x] Fixed setup.sh to only copy specialist agents to global dir (not framework templates)
+- [x] Cleaned up global agents dir (removed old duplicate files)
+- [x] Added opencode.jsonc template + setup.sh generates it per-project
+- [x] Expanded orchestrator agent reference table with 16 specialists
+- [x] Removed empty planner/ and generator/ directories
+- [x] Translated examples/habittracker-pro/README.md to English
 
 ## Current Status
 - Repository is clean, standardized, and ready for public release
@@ -22,5 +29,5 @@
 ## Next Steps
 - [ ] Add CI/CD pipeline (GitHub Actions)
 - [ ] Add more framework-specific templates
-- [ ] Create example projects for each major stack
+- [ ] Create showcase videos / demos
 - [ ] Publish to npm as CLI tool

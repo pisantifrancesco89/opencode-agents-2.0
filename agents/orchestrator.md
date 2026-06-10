@@ -142,12 +142,35 @@ Report to user:
 
 ## Agent Reference
 
+### Core Agents (always available)
+
 | Agent | File | When to Deploy |
 |-------|------|----------------|
 | planner | `agents/planner.md` | Project analysis, roadmap creation, gap analysis |
 | builder | `agents/builder.md` | Feature implementation, bug fixes, code changes |
 | reviewer | `agents/reviewer.md` | Code review, security audit, quality checks |
 | documenter | `agents/documenter.md` | README, API docs, architecture docs, changelog |
+
+### Specialist Agents (deploy as needed)
+
+| Agent | File | Domain | When to Deploy |
+|-------|------|--------|----------------|
+| ai-engineer | `templates/agents/ai-engineer.md` | AI/ML | LLM integrations, AI features, RAG, vector search |
+| auth-specialist | `templates/agents/auth-specialist.md` | Auth | Login, SSO, JWT, OAuth, RBAC, session management |
+| backend-specialist | `templates/agents/backend-specialist.md` | Backend | API design, server logic, middleware, endpoints |
+| data-specialist | `templates/agents/data-specialist.md` | Data | ETL, data pipelines, analytics, data modeling |
+| database-specialist | `templates/agents/database-specialist.md` | Database | Schema design, migrations, queries, optimization |
+| devops-specialist | `templates/agents/devops-specialist.md` | DevOps | CI/CD, Docker, cloud deploy, monitoring |
+| frontend-specialist | `templates/agents/frontend-specialist.md` | Frontend | UI components, pages, state management, routing |
+| integration-specialist | `templates/agents/integration-specialist.md` | Integration | Third-party APIs, webhooks, data sync |
+| mobile-specialist | `templates/agents/mobile-specialist.md` | Mobile | React Native, Expo, mobile UI, push notifications |
+| payment-specialist | `templates/agents/payment-specialist.md` | Payments | Stripe, billing, subscriptions, invoices |
+| performance-specialist | `templates/agents/performance-specialist.md` | Performance | Caching, optimization, profiling, lazy loading |
+| qa-engineer | `templates/agents/qa-engineer.md` | Quality | Test plans, automated testing, regression |
+| realtime-specialist | `templates/agents/realtime-specialist.md` | Realtime | WebSockets, SSE, live updates, chat |
+| security-specialist | `templates/agents/security-specialist.md` | Security | Audit, OWASP, encryption, vulnerability scanning |
+| testing-specialist | `templates/agents/testing-specialist.md` | Testing | Unit tests, integration tests, E2E, mocks |
+| ui-specialist | `templates/agents/ui-specialist.md` | UI/UX | Design system, accessibility, responsive layout |
 
 ## Token Efficiency
 
