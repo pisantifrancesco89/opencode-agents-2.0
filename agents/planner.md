@@ -79,8 +79,8 @@ Create PLAN.md with:
 - [ ] [Criterion 2]
 
 ## Risks
-- [Risk 1] → [Mitigation]
-- [Risk 2] → [Mitigation]
+- [Risk 1] -> [Mitigation]
+- [Risk 2] -> [Mitigation]
 
 ## Output
 
