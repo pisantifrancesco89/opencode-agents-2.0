@@ -219,37 +219,63 @@ Report to user:
 | testing-specialist | `templates/agents/testing-specialist.md` | Testing | Unit tests, integration tests, E2E, mocks |
 | ui-specialist | `templates/agents/ui-specialist.md` | UI/UX | Design system, accessibility, responsive layout |
 
-## Model Configuration — ⚡ 100% Free & Optimized
+## Model Configuration — ⚡ Ibrida: Go Plan + Free
 
-All agents use **exclusively free models** with **low temperatures** for minimum token consumption.
+La strategia: **modelli premium SOLO dove la qualità è critica**, free models per il resto.
 
-### Current model setup (free only)
+### Filosofia
 
-| Agent | Model | Why | Temp |
-|-------|-------|-----|------|
-| **Orchestrator** 🧠 | `zenmux/deepseek/deepseek-v3.2` | Reasoning | **0.2** |
-| **Planner** 📋 | `zenmux/deepseek/deepseek-v3.2` | Reasoning | **0.3** |
-| **Builder** 🔧 | `zenmux/deepseek/deepseek-v4-flash` | Fast code | **0.1** |
-| **Reviewer** 👁️ | `zenmux/google/gemini-2.5-flash` | Analysis | **0.1** |
-| **Documenter** 📝 | `zenmux/qwen/qwen3.5-plus` | Writing | **0.2** |
-| **Code specialists** | `zenmux/deepseek/deepseek-v4-flash` | Fast code | **0.1** |
-| **Analysis specialists** | `zenmux/google/gemini-2.5-flash` | Analysis | **0.1** |
-| **UI/UX** 🎨 | `zenmux/qwen/qwen3.5-plus` | Creative | **0.2** |
+```
+GO PLAN (consuma crediti, qualità massima):
+  Solo per agenti che PRODUCONO output finale:
+  → orchestrator (decisioni architetturali)
+  → builder (codice di produzione)
+  → backend/frontend (API, UI)
+  → database (query, schemi)
+  → security (sicurezza)
 
-### Why so cheap?
+ZENMUX FREE (gratuito, buona qualità):
+  Per agenti di ANALISI e SUPPORTO:
+  → planner, reviewer, documenter
+  → devops, QA, testing
+  → UI, mobile, integration, payment, etc.
+  Questi modelli free sono comunque eccellenti
+  (deepseek, gemini, qwen) — solo leggermente
+  meno potenti dei premium.
+```
 
-1. **All models are free** — ZenMux providers, no API keys needed
-2. **Low temperatures (0.1-0.3)** — deterministic output = fewer retries = fewer tokens
-3. **Flash/lite models** — faster inference = less compute
-4. **Right model for the job** — no waste (v3.2 only for reasoning, v4-flash for code)
+### Current setup
 
-### Cost comparison
+| Agent | Modello | Fonte | Temp | Perché |
+|-------|---------|-------|------|--------|
+| **Orchestrator** 🧠 | `opencode/gpt-5-codex` | **Go plan** | 0.3 | Decisioni architetturali critiche |
+| **Builder** 🔧 | `opencode/deepseek-v4-flash` | **Go plan** | 0.2 | Codice di produzione |
+| **Backend** 🔌 | `opencode/deepseek-v4-flash` | **Go plan** | 0.2 | API, logica di business |
+| **Frontend** 🎨 | `opencode/deepseek-v4-flash` | **Go plan** | 0.2 | UI di produzione |
+| **Database** 🗄️ | `opencode/deepseek-v4-flash` | **Go plan** | 0.2 | Query, schemi |
+| **Security** 🔒 | `opencode/deepseek-v4-flash` | **Go plan** | 0.1 | Audit, vulnerabilità |
+| **Planner** 📋 | `zenmux/deepseek/deepseek-v3.2` | **Free** | 0.3 | Buon ragionamento, free |
+| **Reviewer** 👁️ | `zenmux/google/gemini-2.5-flash` | **Free** | 0.1 | Ottimo per analisi |
+| **Documenter** 📝 | `zenmux/qwen/qwen3.5-plus` | **Free** | 0.2 | Scrittura, free |
+| **QA/Test** 🧪 | `zenmux/google/gemini-2.5-flash` | **Free** | 0.1 | Test plans, free |
+| **DevOps** ⚙️ | `zenmux/google/gemini-2.5-flash` | **Free** | 0.2 | Infrastruttura, free |
+| **UI/Mobile** 📱 | `zenmux/deepseek/deepseek-v4-flash` | **Free** | 0.2 | Codice UI, free |
+| **Altri specialisti** | `zenmux/*` misti | **Free** | 0.2 | Supporto, free |
 
-| Setup | Cost per session (est.) |
-|-------|------------------------|
-| GPT-4o for all agents | ~$0.50-2.00 |
-| Claude for all agents | ~$0.30-1.50 |
-| **This setup (100% free)** | **$0.00** |
+### Costo stimato per sessione
+
+| Componente | Token | Costo |
+|------------|-------|-------|
+| Orchestrator (Go plan) | ~2K | ~$0.01 |
+| Builder (Go plan) | ~8K | ~$0.04 |
+| Backend/Frontend/DB (Go plan) | ~6K | ~$0.03 |
+| **Subtotale Go plan** | **~16K** | **~$0.08** |
+| Reviewer (free) | ~3K | $0.00 |
+| Planner (free) | ~1K | $0.00 |
+| Documenter (free) | ~1K | $0.00 |
+| Specialisti (free) | ~3K | $0.00 |
+| **Subtotale Free** | **~8K** | **$0.00** |
+| **Totale sessione** | **~24K** | **~$0.08** |
 
 ### How it works
 1. **Global config** (`~/.config/opencode/opencode.jsonc`) — applies to ALL projects
@@ -260,17 +286,21 @@ All agents use **exclusively free models** with **low temperatures** for minimum
 // Edit ~/.config/opencode/opencode.jsonc
 {
   "agent": {
-    "builder": { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 }
+    // Per passare un agente da Go plan a free:
+    "frontend-specialist": { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.2 },
+    // Per passare un agente da free a Go plan:
+    "planner": { "model": "opencode/deepseek-v4-flash", "temperature": 0.3 }
   }
 }
 ```
 
-### Available free models
-- `zenmux/deepseek/deepseek-v4-flash` — fast, good code
-- `zenmux/deepseek/deepseek-v3.2` — strong reasoning
-- `zenmux/google/gemini-2.5-flash` — analysis
-- `zenmux/qwen/qwen3.5-plus` — creative writing
-- `zenmux/z-ai/glm-4.7-flash-free` — ultra-lightweight
+### Model reference
+- `opencode/gpt-5-codex` — Go plan, massima qualità
+- `opencode/deepseek-v4-flash` — Go plan, veloce e capace
+- `zenmux/deepseek/deepseek-v3.2` — Free, buon ragionamento
+- `zenmux/deepseek/deepseek-v4-flash` — Free, veloce
+- `zenmux/google/gemini-2.5-flash` — Free, ottima analisi
+- `zenmux/qwen/qwen3.5-plus` — Free, scrittura creativa
 
 ## Token Efficiency
 

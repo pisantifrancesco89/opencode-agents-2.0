@@ -700,20 +700,18 @@ create_tool_configs() {
     cat > "$PROJECT_DIR/opencode.jsonc" << 'OPEOC'
 {
   // ═══════════════════════════════════════════════
-  //  AI Software House — CONFIG OTTIMIZZATA
-  //  100% GRATUITA — solo ZenMux free models
-  //  Temperature basse = massima efficienza
+  //  AI Software House — CONFIG IB RIDA
+  //  Go Plan (task critiche) + Free (supporto)
   // ═══════════════════════════════════════════════
   //
-  // Modelli gratuiti:
-  //   zenmux/deepseek/deepseek-v4-flash   → codice veloce
-  //   zenmux/deepseek/deepseek-v3.2       → ragionamento
-  //   zenmux/google/gemini-2.5-flash      → analisi
-  //   zenmux/qwen/qwen3.5-plus            → creatività
+  //  GO PLAN: orchestrator, builder, backend,
+  //    frontend, database, security
+  //  ZENMUX FREE: planner, reviewer, documenter,
+  //    devops, QA, testing, UI, mobile, etc.
 
   "default_agent": "orchestrator",
   "auto_apply": false,
-  "model": "zenmux/deepseek/deepseek-v4-flash",
+  "model": "opencode/deepseek-v4-flash",
   "small_model": "zenmux/deepseek/deepseek-chat",
   "skills": [
     "opencode-agents"
@@ -728,30 +726,32 @@ create_tool_configs() {
     "Use the orchestrator agent as the primary interface"
   ],
 
-  // ── Per-Agent (100% free, temp basse = minimi token) ──
+  // ── Per-Agent Configuration ──
   "agent": {
-    "orchestrator":       { "model": "zenmux/deepseek/deepseek-v3.2",    "temperature": 0.2 },
-    "planner":            { "model": "zenmux/deepseek/deepseek-v3.2",    "temperature": 0.3 },
-    "builder":            { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "reviewer":           { "model": "zenmux/google/gemini-2.5-flash",   "temperature": 0.1 },
-    "documenter":         { "model": "zenmux/qwen/qwen3.5-plus",         "temperature": 0.2 },
+    // ── GO PLAN (task critiche) ──
+    "orchestrator":       { "model": "opencode/gpt-5-codex",            "temperature": 0.3 },
+    "builder":            { "model": "opencode/deepseek-v4-flash",      "temperature": 0.2 },
+    "backend-specialist": { "model": "opencode/deepseek-v4-flash",      "temperature": 0.2 },
+    "frontend-specialist":{ "model": "opencode/deepseek-v4-flash",      "temperature": 0.2 },
+    "database-specialist":{ "model": "opencode/deepseek-v4-flash",      "temperature": 0.2 },
+    "security-specialist":{ "model": "opencode/deepseek-v4-flash",      "temperature": 0.1 },
 
-    "ai-engineer":        { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "auth-specialist":    { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "backend-specialist": { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "data-specialist":    { "model": "zenmux/deepseek/deepseek-v3.2",    "temperature": 0.2 },
-    "database-specialist":{ "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "devops-specialist":  { "model": "zenmux/google/gemini-2.5-flash",   "temperature": 0.1 },
-    "frontend-specialist":{ "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "integration-specialist": { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "mobile-specialist":  { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "payment-specialist": { "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "performance-specialist": { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.1 },
-    "qa-engineer":        { "model": "zenmux/google/gemini-2.5-flash",   "temperature": 0.1 },
-    "realtime-specialist":{ "model": "zenmux/deepseek/deepseek-v4-flash", "temperature": 0.1 },
-    "security-specialist":{ "model": "zenmux/google/gemini-2.5-flash",   "temperature": 0.1 },
-    "testing-specialist": { "model": "zenmux/google/gemini-2.5-flash",   "temperature": 0.1 },
-    "ui-specialist":      { "model": "zenmux/qwen/qwen3.5-plus",         "temperature": 0.2 }
+    // ── ZENMUX FREE (supporto) ──
+    "planner":            { "model": "zenmux/deepseek/deepseek-v3.2",  "temperature": 0.3 },
+    "reviewer":           { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.1 },
+    "documenter":         { "model": "zenmux/qwen/qwen3.5-plus",       "temperature": 0.2 },
+    "ai-engineer":        { "model": "zenmux/deepseek/deepseek-v4-flash","temperature": 0.2 },
+    "auth-specialist":    { "model": "zenmux/deepseek/deepseek-v4-flash","temperature": 0.2 },
+    "data-specialist":    { "model": "zenmux/deepseek/deepseek-v3.2",  "temperature": 0.2 },
+    "devops-specialist":  { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.2 },
+    "integration-specialist": { "model": "zenmux/deepseek/deepseek-v4-flash","temperature": 0.2 },
+    "mobile-specialist":  { "model": "zenmux/deepseek/deepseek-v4-flash","temperature": 0.2 },
+    "payment-specialist": { "model": "zenmux/deepseek/deepseek-v4-flash","temperature": 0.2 },
+    "performance-specialist": { "model": "zenmux/google/gemini-2.5-flash","temperature": 0.2 },
+    "qa-engineer":        { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.1 },
+    "realtime-specialist":{ "model": "zenmux/deepseek/deepseek-v4-flash","temperature": 0.2 },
+    "testing-specialist": { "model": "zenmux/google/gemini-2.5-flash", "temperature": 0.1 },
+    "ui-specialist":      { "model": "zenmux/qwen/qwen3.5-plus",       "temperature": 0.2 }
   }
 }
 OPEOC
